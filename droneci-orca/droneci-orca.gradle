@@ -4,6 +4,26 @@ buildscript {
     }
 }
 
+plugins {
+    id('org.jetbrains.kotlin.jvm')
+    id('org.jetbrains.kotlin.kapt')
+}
+
+compileKotlin {
+    kotlinOptions {
+        jvmTarget = "1.8"
+    }
+}
+compileTestKotlin {
+    kotlinOptions {
+        jvmTarget = "1.8"
+    }
+}
+
+dependencies {
+    implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8:${kotlinVersion}")
+}
+
 apply plugin: "io.spinnaker.plugin.service-extension"
 apply plugin: "maven-publish"
 apply plugin: "kotlin"
@@ -25,18 +45,19 @@ spinnakerPlugin {
 }
 
 dependencies {
-    //pf4j
     compileOnly(group: 'org.pf4j', name: 'pf4j', version: "${pf4jVersion}")
     kapt(group: 'org.pf4j', name: 'pf4j', version: "${pf4jVersion}")
-    //SpringFramework!!
+
     compileOnly (group: 'org.springframework', name: 'spring-context', version: "${springVersion}")
     compileOnly (group: 'org.springframework', name: 'spring-web', version: "${springVersion}")
-    //Kork,Orca
-    compileOnly (group: 'com.netflix.spinnaker.kork', name: 'kork-plugins-api', version: "${korkVersion}")
-    compileOnly (group: 'com.netflix.spinnaker.orca', name: 'orca-api', version: "${orcaVersion}")
-    // Others
-    compile(group: 'org.modelmapper', name: 'modelmapper', version: '2.3.0')
+    compileOnly (group: 'org.springframework.boot', name: 'spring-boot-starter', version: "${springBootVersion}")
 
+    compileOnly (group: 'com.netflix.spinnaker.kork', name: 'kork-plugins-api', version: "${korkVersion}")
+    compileOnly (group: 'com.netflix.spinnaker.kork', name: 'kork-plugins-spring-api', version: "${korkVersion}")
+
+    compileOnly (group: 'com.netflix.spinnaker.orca', name: 'orca-api', version: "${orcaVersion}")
+
+    compile(group: 'org.modelmapper', name: 'modelmapper', version: '2.3.0')
 
     testImplementation (group: 'com.netflix.spinnaker.orca', name: 'orca-api', version: "${orcaVersion}")
 

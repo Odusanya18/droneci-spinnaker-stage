@@ -8,14 +8,16 @@ import com.netflix.spinnaker.orca.api.pipeline.CancellableStage.Result
 import com.netflix.spinnaker.orca.api.pipeline.graph.TaskNode.Builder
 import com.netflix.spinnaker.orca.api.pipeline.models.StageExecution
 import com.netflix.spinnaker.orca.api.pipeline.graph.StageDefinitionBuilder
+import com.netflix.spinnaker.kork.plugins.api.spring.PrivilegedSpringPlugin
 import org.pf4j.Extension
 import org.pf4j.Plugin
 import org.pf4j.PluginWrapper
+import org.springframework.beans.factory.support.BeanDefinitionRegistry
 
-class DroneCIPlugin(wrapper: PluginWrapper) : Plugin(wrapper) {
+class DroneCIPlugin(wrapper: PluginWrapper) : PrivilegedSpringPlugin(wrapper) {
     @Extension
     class DroneCIStage : StageDefinitionBuilder, CancellableStage {
-        override fun cancel(stage: StageExecution?): Result {
+        override fun cancel(stage: StageExecution): Result {
             TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
         }
 
@@ -29,5 +31,9 @@ class DroneCIPlugin(wrapper: PluginWrapper) : Plugin(wrapper) {
     }
     companion object {
         val HTTP_CLIENT = "droneciexecutorproxy"
+    }
+
+    override fun registerBeanDefinitions(registry: BeanDefinitionRegistry?) {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 }
