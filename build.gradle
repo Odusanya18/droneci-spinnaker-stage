@@ -1,0 +1,56 @@
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:${kotlinVersion}"
+    }
+}
+
+plugins {
+    id("io.spinnaker.plugin.bundler").version("$spinnakerGradleVersion")
+    id("com.palantir.git-version").version("0.12.2")
+    id("org.jetbrains.kotlin.jvm").version("$kotlinVersion")
+    id("org.jetbrains.kotlin.kapt").version("$kotlinVersion")
+}
+
+repositories {
+    mavenCentral()
+}
+
+spinnakerBundle {
+    pluginId = "droneci"
+    description = "A Drone CI build stage plugin."
+    provider = "https://github.com/odusanya18"
+    version = rootProject.version
+}
+
+version = normalizedVersion()
+
+subprojects {
+    group = "com.github.odusanya18"
+    version = rootProject.version
+}
+dependencies {
+    implementation(group: 'org.jetbrains.kotlin', name: 'kotlin-stdlib-jdk8', version: "$kotlinVersion")
+}
+compileKotlin {
+    kotlinOptions {
+        jvmTarget = "1.8"
+    }
+}
+compileTestKotlin {
+    kotlinOptions {
+        jvmTarget = "1.8"
+    }
+}
+
+static String normalizedVersion() {
+    String fullVersion = gitVersion()
+    String normalized = fullVersion.split("-").first()
+    if (fullVersion.contains("dirty")) {
+        return "$normalized-SNAPSHOT"
+    } else {
+        return normalized
+    }
+}
