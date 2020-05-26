@@ -20,22 +20,19 @@ class DroneCIController(pluginSdks: PluginSdks): DroneCIClientAware(pluginSdks) 
         droneCIProperties.masters.keys
 
     @GetMapping("/{master}/namespaces")
-    fun namespaces(@PathVariable("master") master: String) : List<String> {
-        val namespaces = clientForMaster(master)
+    fun namespaces(@PathVariable("master") master: String) =
+        clientForMaster(master)
             ?.repoService
             ?.listRepos()
             ?.map { repo -> repo.namespace }
             ?.distinct()
-        return namespaces.orEmpty()
-    }
+            .orEmpty()
 
     @GetMapping("/{master}/repos/{namespace}")
-    fun reposByNamespace(@PathVariable("master") master: String, @PathVariable("namespace") namespace: String) : Repos {
-        val repos = clientForMaster(master)
+    fun reposByNamespace(@PathVariable("master") master: String, @PathVariable("namespace") namespace: String) =
+        clientForMaster(master)
             ?.repoService
             ?.listRepos()
             ?.filter { repo -> repo.namespace == namespace }
-        return repos.orEmpty()
-    }
-
+            .orEmpty()
 }
