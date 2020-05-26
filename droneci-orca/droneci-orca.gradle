@@ -57,7 +57,9 @@ dependencies {
 
     compileOnly (group: 'com.netflix.spinnaker.orca', name: 'orca-api', version: "${orcaVersion}")
 
-    compile(group: 'org.modelmapper', name: 'modelmapper', version: '2.3.0')
+    implementation 'com.squareup.retrofit2:retrofit:2.5.0'
+    implementation 'com.squareup.retrofit2:converter-gson:2.5.0'
+    implementation 'io.github.resilience4j:resilience4j-retry:1.4.0'
 
     testImplementation (group: 'com.netflix.spinnaker.orca', name: 'orca-api', version: "${orcaVersion}")
 

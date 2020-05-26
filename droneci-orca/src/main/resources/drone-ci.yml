@@ -1,0 +1,4 @@
+baseUrl: http://172.26.41.141/
+token: eKdw5zZyDDxCjtScnSuPl0rvJCm38ATa
+timeout: 300
+backoffPeriod: 30

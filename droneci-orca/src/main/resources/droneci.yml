@@ -1,5 +1,0 @@
-baseUrl: http://localhost
-clientLoggingLevel: BASIC
-build:
-  timeoutSeconds: 300
-  backoffPeriodSeconds: 30
