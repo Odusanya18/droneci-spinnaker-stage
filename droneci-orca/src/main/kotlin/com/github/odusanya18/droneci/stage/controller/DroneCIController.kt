@@ -14,7 +14,10 @@ class DroneCIController(droneCIProperties: DroneCIProperties): DroneCIClientAwar
 
     @GetMapping
     fun masters() =
-        droneCIProperties.masters.keys
+        droneCIProperties
+            .masters
+            ?.keys
+            .orEmpty()
 
     @GetMapping("/{master}/namespaces")
     fun namespaces(@PathVariable("master") master: String) =

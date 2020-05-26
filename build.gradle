@@ -4,7 +4,6 @@ buildscript {
     }
     dependencies {
         classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:${kotlinVersion}")
-        classpath("io.spinnaker.gradle:spinnaker-extensions:${spinnakerGradleVersion}")
     }
 }
 
@@ -13,10 +12,18 @@ plugins {
     id("com.palantir.git-version").version("0.12.2")
 }
 
+apply plugin: "io.spinnaker.plugin.service-extension"
+
+spinnakerPlugin {
+    serviceName = "orca"
+    pluginClass = "com.github.odusanya18.droneci.stage.DroneCIPlugin"
+    requires="orca>=8.0.0"
+}
+
 spinnakerBundle {
-    pluginId = "droneci"
+    pluginId = "odusanya18.drone-ci"
     description = "A Drone CI build stage plugin."
-    provider = "https://github.com/odusanya18"
+    provider = "victor.odusanya@interswitchgroup.com"
     version = rootProject.version
 }
 

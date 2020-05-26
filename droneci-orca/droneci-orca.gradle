@@ -5,6 +5,7 @@ buildscript {
 }
 
 plugins {
+    id('java')
     id('org.jetbrains.kotlin.jvm')
     id('org.jetbrains.kotlin.kapt')
 }
@@ -40,13 +41,19 @@ repositories {
 
 spinnakerPlugin {
     serviceName = "orca"
-    pluginClass = "com.github.odusanya18.droneci.stage.pipeline.DroneCIPlugin"
+    pluginClass = "com.github.odusanya18.droneci.stage.DroneCIPlugin"
     requires="orca>=8.0.0"
 }
 
 dependencies {
     compileOnly(group: 'org.pf4j', name: 'pf4j', version: "${pf4jVersion}")
     kapt(group: 'org.pf4j', name: 'pf4j', version: "${pf4jVersion}")
+
+    compileOnly 'org.projectlombok:lombok:1.18.12'
+    annotationProcessor 'org.projectlombok:lombok:1.18.12'
+
+    testCompileOnly 'org.projectlombok:lombok:1.18.12'
+    testAnnotationProcessor 'org.projectlombok:lombok:1.18.12'
 
     compileOnly (group: 'org.springframework', name: 'spring-context', version: "${springVersion}")
     compileOnly (group: 'org.springframework', name: 'spring-web', version: "${springVersion}")
@@ -59,7 +66,6 @@ dependencies {
 
     implementation 'com.squareup.retrofit2:retrofit:2.5.0'
     implementation 'com.squareup.retrofit2:converter-gson:2.5.0'
-    implementation 'io.github.resilience4j:resilience4j-retry:1.4.0'
 
     testImplementation (group: 'com.netflix.spinnaker.orca', name: 'orca-api', version: "${orcaVersion}")
 

@@ -17,8 +17,8 @@ class MonitorDroneCITask(droneCIProperties: DroneCIProperties) : RetryableTask, 
     droneCIProperties
 ) {
 
-    override fun getTimeout() = TimeUnit.SECONDS.toMillis(droneCIProperties.timeout)
-    override fun getBackoffPeriod() = TimeUnit.SECONDS.toMillis(droneCIProperties.backOffPeriod)
+    override fun getTimeout() = TimeUnit.SECONDS.toMillis(droneCIProperties.timeout ?: 15)
+    override fun getBackoffPeriod() = TimeUnit.SECONDS.toMillis(droneCIProperties.backOffPeriod ?: 15)
 
     override fun execute(stage: StageExecution): TaskResult {
         val stageDefinition = stage.mapTo(CIStageDefinition::class.java)
