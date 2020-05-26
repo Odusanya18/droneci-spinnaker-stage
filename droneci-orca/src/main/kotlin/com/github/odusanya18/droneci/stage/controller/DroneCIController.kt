@@ -18,9 +18,16 @@ class DroneCIController(pluginSdks: PluginSdks): DroneCIClientAware(pluginSdks) 
 
     @GetMapping("/{master}/namespaces")
     fun namespaces(@PathVariable("master") master: String) =
-        clientForMaster(master)?.repoService?.listRepos()?.map { repo -> repo.namespace }?.distinct()
+        clientForMaster(master)
+            ?.repoService
+            ?.listRepos()
+            ?.map { repo -> repo.namespace }
+            ?.distinct()
 
     @GetMapping("/{master}/repos/{namespace}")
     fun reposByNamespace(@PathVariable("master") master: String, @PathVariable("namespace") namespace: String) =
-        clientForMaster(master)?.repoService?.listRepos()?.filter { repo -> repo.namespace == namespace }
+        clientForMaster(master)
+            ?.repoService
+            ?.listRepos()
+            ?.filter { repo -> repo.namespace == namespace }
 }
