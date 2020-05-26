@@ -9,10 +9,10 @@ import org.springframework.web.bind.annotation.RestController
 
 
 @RestController()
-@RequestMapping("/drone-ci")
+@RequestMapping("/drone-ci/masters")
 class DroneCIController(pluginSdks: PluginSdks): DroneCIClientAware(pluginSdks) {
 
-    @GetMapping("/masters")
+    @GetMapping
     fun masters() =
         droneCIProperties.masters.keys
 
