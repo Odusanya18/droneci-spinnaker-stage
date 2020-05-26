@@ -1,4 +1,4 @@
-package com.github.odusanya18.droneci.stage.client.model
+package com.github.odusanya18.droneci.stage.models
 
 import kotlin.String
 

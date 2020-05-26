@@ -1,4 +1,4 @@
-package com.github.odusanya18.droneci.stage.client.execution
+package com.github.odusanya18.droneci.stage.models.execution
 
 data class DroneCIStageExecution (
     val buildId: String,

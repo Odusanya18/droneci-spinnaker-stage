@@ -1,7 +1,7 @@
-package com.github.odusanya18.droneci.stage.client.services
+package com.github.odusanya18.droneci.stage.services
 
-import com.github.odusanya18.droneci.stage.client.model.User
-import com.github.odusanya18.droneci.stage.client.model.Users
+import com.github.odusanya18.droneci.stage.models.User
+import com.github.odusanya18.droneci.stage.models.Users
 import retrofit2.http.GET
 import retrofit2.http.Path
 

@@ -1,6 +1,6 @@
 package com.github.odusanya18.droneci.stage.client
 
-import com.github.odusanya18.droneci.stage.client.services.*
+import com.github.odusanya18.droneci.stage.services.*
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit

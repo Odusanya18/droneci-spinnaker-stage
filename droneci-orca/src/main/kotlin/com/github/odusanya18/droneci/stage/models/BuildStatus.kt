@@ -1,4 +1,4 @@
-package com.github.odusanya18.droneci.stage.client.services
+package com.github.odusanya18.droneci.stage.models
 
 enum class BuildStatus(s: String) {
     SUCCESS("success"),

@@ -1,7 +1,7 @@
 package com.github.odusanya18.droneci.stage.pipeline
 
-import com.github.odusanya18.droneci.stage.client.definition.CIStageDefinition
-import com.github.odusanya18.droneci.stage.controllers.DroneCIController
+import com.github.odusanya18.droneci.stage.models.definition.CIStageDefinition
+import com.github.odusanya18.droneci.stage.controller.DroneCIController
 import com.github.odusanya18.droneci.stage.tasks.MonitorDroneCITask
 import com.github.odusanya18.droneci.stage.tasks.StartDroneCITask
 import com.netflix.spinnaker.orca.api.pipeline.graph.TaskNode.Builder

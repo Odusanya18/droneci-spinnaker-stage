@@ -1,4 +1,6 @@
-baseUrl: http://172.26.41.141/
-token: eKdw5zZyDDxCjtScnSuPl0rvJCm38ATa
+test-master:
+  baseUrl: http://172.26.41.141/
+  token: eKdw5zZyDDxCjtScnSuPl0rvJCm38ATa
+  refresh: false
 timeout: 300
 backoffPeriod: 30

@@ -1,4 +1,4 @@
-package com.github.odusanya18.droneci.stage.client.definition
+package com.github.odusanya18.droneci.stage.models.definition
 
 import com.fasterxml.jackson.annotation.JsonProperty
 import com.netflix.spinnaker.kork.artifacts.model.Artifact
