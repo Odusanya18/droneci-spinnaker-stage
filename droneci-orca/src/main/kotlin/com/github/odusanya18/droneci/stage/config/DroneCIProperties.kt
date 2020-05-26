@@ -1,9 +1,8 @@
 package com.github.odusanya18.droneci.stage.config
 
-import com.netflix.spinnaker.kork.plugins.api.ExtensionConfiguration
-import com.netflix.spinnaker.kork.plugins.api.httpclient.HttpClientConfig
+import com.netflix.spinnaker.kork.plugins.api.PluginConfiguration
 
-@ExtensionConfiguration("drone-ci")
+@PluginConfiguration("drone-ci")
 data class DroneCIProperties (
     val baseUrl: String,
     val token: String,
