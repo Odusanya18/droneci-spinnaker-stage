@@ -15,11 +15,7 @@ import org.springframework.beans.factory.support.BeanDefinitionRegistry
 
 class DroneCIPlugin(wrapper: PluginWrapper) : PrivilegedSpringPlugin(wrapper) {
     override fun registerBeanDefinitions(registry: BeanDefinitionRegistry) {
-        listOf(
-            beanDefinitionFor(DroneCIController::class.java)
-        ).forEach {
-            registerBean(it, registry)
-        }
+        registerBean(beanDefinitionFor(DroneCIController::class.java), registry)
     }
 
     @Extension
