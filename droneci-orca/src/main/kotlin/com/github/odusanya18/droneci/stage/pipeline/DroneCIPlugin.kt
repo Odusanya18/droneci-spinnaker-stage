@@ -19,7 +19,7 @@ class DroneCIPlugin(wrapper: PluginWrapper) : PrivilegedSpringPlugin(wrapper) {
     }
 
     @Extension
-    class DroneCIStage : StageDefinitionBuilder, CancellableStage {
+    class DroneCIStage : StageDefinitionBuilder {
         override fun taskGraph(stage: StageExecution, builder: Builder) {
             stage.mapTo(CIStageDefinition::class.java)
             builder
@@ -27,12 +27,5 @@ class DroneCIPlugin(wrapper: PluginWrapper) : PrivilegedSpringPlugin(wrapper) {
                 .withTask("monitorDroneCITask", MonitorDroneCITask::class.java)
                 .withTask("stopDroneCITask", MonitorDroneCITask::class.java)
         }
-
-        override fun cancel(stage: StageExecution?): CancellableStage.Result {
-            TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-        }
-    }
-    companion object {
-        val HTTP_CLIENT = "drone-ci:executorproxy"
     }
 }
