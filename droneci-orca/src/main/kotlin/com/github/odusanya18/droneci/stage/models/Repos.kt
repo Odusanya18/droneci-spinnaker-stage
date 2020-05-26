@@ -2,7 +2,7 @@ package com.github.odusanya18.droneci.stage.models
 
 import kotlin.String
 
-typealias Repos = ArrayList<Repo>
+typealias Repos = List<Repo>
 
 /**
  * The list of Drone CI Repos

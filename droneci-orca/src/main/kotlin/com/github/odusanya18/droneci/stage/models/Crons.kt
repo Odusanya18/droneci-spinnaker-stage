@@ -2,7 +2,7 @@ package com.github.odusanya18.droneci.stage.models
 
 import kotlin.String
 
-typealias Crons = ArrayList<Cron>
+typealias Crons = List<Cron>
 
 /**
  * A list of Drone CI CronJobs.

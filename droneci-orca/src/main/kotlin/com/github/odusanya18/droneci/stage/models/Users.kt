@@ -2,7 +2,7 @@ package com.github.odusanya18.droneci.stage.models
 
 import kotlin.String
 
-typealias Users = ArrayList<User>
+typealias Users = List<User>
 
 /**
  * The list of Drone Users

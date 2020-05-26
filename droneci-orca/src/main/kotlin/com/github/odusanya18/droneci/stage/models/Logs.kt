@@ -2,7 +2,7 @@ package com.github.odusanya18.droneci.stage.models
 
 import kotlin.String
 
-typealias Logs = ArrayList<Log>
+typealias Logs = List<Log>
 
 /**
  * The list of each log line.

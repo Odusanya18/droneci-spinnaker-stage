@@ -2,7 +2,7 @@ package com.github.odusanya18.droneci.stage.models
 
 import kotlin.String
 
-typealias Builds = ArrayList<Build>
+typealias Builds = List<Build>
 
 /**
  * A list of Drone CI Builds
