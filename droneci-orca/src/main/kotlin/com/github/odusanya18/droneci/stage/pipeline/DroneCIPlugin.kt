@@ -3,6 +3,7 @@ package com.github.odusanya18.droneci.stage.pipeline
 import com.github.odusanya18.droneci.stage.controller.DroneCIController
 import com.github.odusanya18.droneci.stage.tasks.MonitorDroneCITask
 import com.github.odusanya18.droneci.stage.tasks.StartDroneCITask
+import com.github.odusanya18.droneci.stage.tasks.StopDroneCITask
 import com.netflix.spinnaker.orca.api.pipeline.graph.TaskNode.Builder
 import com.netflix.spinnaker.orca.api.pipeline.models.StageExecution
 import com.netflix.spinnaker.orca.api.pipeline.graph.StageDefinitionBuilder
@@ -21,6 +22,6 @@ class DroneCIPlugin(wrapper: PluginWrapper) : PrivilegedSpringPlugin(wrapper), S
         builder
             .withTask("startDroneCITask", StartDroneCITask::class.java)
             .withTask("monitorDroneCITask", MonitorDroneCITask::class.java)
-            .withTask("stopDroneCITask", MonitorDroneCITask::class.java)
+            .withTask("stopDroneCITask", StopDroneCITask::class.java)
     }
 }
