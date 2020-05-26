@@ -21,7 +21,6 @@ class DroneCIPlugin(wrapper: PluginWrapper) : PrivilegedSpringPlugin(wrapper) {
     @Extension
     class DroneCIStage : StageDefinitionBuilder {
         override fun taskGraph(stage: StageExecution, builder: Builder) {
-            stage.mapTo(CIStageDefinition::class.java)
             builder
                 .withTask("startDroneCITask", StartDroneCITask::class.java)
                 .withTask("monitorDroneCITask", MonitorDroneCITask::class.java)
