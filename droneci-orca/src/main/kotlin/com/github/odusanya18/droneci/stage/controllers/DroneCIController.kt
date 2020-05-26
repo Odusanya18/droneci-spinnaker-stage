@@ -25,8 +25,8 @@ class DroneCIController(pluginSdks: PluginSdks) {
     fun namespaces() = droneCIClient
         .repoService
         .listRepos()
-        .distinctBy { repo -> repo.namespace }
         .map { repo -> repo.namespace }
+        .distinct()
 
     @GetMapping("/repos/{namespace}")
     fun reposByNamespace(@PathVariable("namespace") namespace: String) = droneCIClient
