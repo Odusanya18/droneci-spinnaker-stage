@@ -3,6 +3,8 @@ package com.github.odusanya18.droneci.stage.config;
 import com.github.odusanya18.droneci.stage.models.config.Master;
 import com.netflix.spinnaker.kork.plugins.api.ExtensionConfiguration;
 import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.ResponseStatus;
 
 import javax.annotation.Nonnull;
 import java.util.Map;
@@ -14,6 +16,7 @@ public class DroneCIProperties {
     private Long timeout = 300L;
     private Long backOffPeriod = 500L;
 
+    @ResponseStatus(code = HttpStatus.NOT_FOUND, reason = "Master not configured")
     public static class DroneCIPropertyException extends IllegalAccessException {
         DroneCIPropertyException(String message){
             super(message);

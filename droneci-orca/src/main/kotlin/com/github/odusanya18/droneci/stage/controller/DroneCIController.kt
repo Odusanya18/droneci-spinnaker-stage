@@ -14,24 +14,22 @@ class DroneCIController(droneCIProperties: DroneCIProperties): DroneCIClientAwar
 
     @GetMapping
     fun masters() =
-        droneCIProperties
-            .masters
-            .keys
+            droneCIProperties
+                    .masters
+                    .keys
 
     @GetMapping("/{master}/namespaces")
     fun namespaces(@PathVariable("master") master: String) =
-        clientForMaster(master)
-            ?.repoService
-            ?.listRepos()
-            ?.map { repo -> repo.namespace }
-            ?.distinct()
-            .orEmpty()
+            clientForMaster(master)
+                    .repoService
+                    .listRepos()
+                    .map { repo -> repo.namespace }
+                    .distinct()
 
     @GetMapping("/{master}/repos/{namespace}")
     fun reposByNamespace(@PathVariable("master") master: String, @PathVariable("namespace") namespace: String) =
-        clientForMaster(master)
-            ?.repoService
-            ?.listRepos()
-            ?.filter { repo -> repo.namespace == namespace }
-            .orEmpty()
+            clientForMaster(master)
+                    .repoService
+                    .listRepos()
+                    .filter { repo -> repo.namespace == namespace }
 }
