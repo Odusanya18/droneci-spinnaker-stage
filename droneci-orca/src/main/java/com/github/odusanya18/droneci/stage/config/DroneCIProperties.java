@@ -30,8 +30,10 @@ public class DroneCIProperties {
     }
 
     public @Nonnull Master getMasterByName(String masterName) throws DroneCIPropertyException {
-        Master master = masters.get(masterName);
-        if (master != null)return master;
+        if (masters != null){
+            Master master = masters.get(masterName);
+            if (master != null)return master;
+        };
 
         throw new DroneCIPropertyException("Master " + masterName + " not configured");
     }
