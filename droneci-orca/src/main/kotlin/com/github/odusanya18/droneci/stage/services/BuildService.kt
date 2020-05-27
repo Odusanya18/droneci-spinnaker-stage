@@ -2,6 +2,7 @@ package com.github.odusanya18.droneci.stage.services
 
 import com.github.odusanya18.droneci.stage.models.Build
 import com.github.odusanya18.droneci.stage.models.Builds
+import retrofit2.Call
 import retrofit2.Response
 import retrofit2.http.*
 
@@ -56,12 +57,12 @@ interface BuildService {
         @Path("owner") owner: String?,
         @Path("repo") repo: String?,
         @Path("buildNumber") buildNumber: Long?
-    ) : Response<Void>
+    ) : Call<Void>
 
     @POST("/api/repos/{owner}/{repo}/builds/{buildNumber}/decline")
     fun declineBuild(
         @Path("owner") owner: String?,
         @Path("repo") repo: String?,
         @Path("buildNumber") buildNumber: Long?
-    ) : Response<Void>
+    ) : Call<Void>
 }

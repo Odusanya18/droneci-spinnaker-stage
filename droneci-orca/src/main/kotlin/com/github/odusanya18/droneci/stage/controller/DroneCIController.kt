@@ -2,10 +2,10 @@ package com.github.odusanya18.droneci.stage.controller
 
 import com.github.odusanya18.droneci.stage.client.DroneCIClientAware
 import com.github.odusanya18.droneci.stage.config.DroneCIProperties
-import org.springframework.web.bind.annotation.GetMapping
-import org.springframework.web.bind.annotation.PathVariable
-import org.springframework.web.bind.annotation.RequestMapping
-import org.springframework.web.bind.annotation.RestController
+import com.github.odusanya18.droneci.stage.models.Repo
+import com.github.odusanya18.droneci.stage.models.Repos
+import org.springframework.http.HttpStatus
+import org.springframework.web.bind.annotation.*
 
 
 @RestController()
@@ -15,21 +15,37 @@ class DroneCIController(droneCIProperties: DroneCIProperties): DroneCIClientAwar
     @GetMapping
     fun masters() =
             droneCIProperties
-                    .masters
-                    .keys
+                    .getMasters()
+                    .map { master -> master.name }
 
     @GetMapping("/{master}/namespaces")
-    fun namespaces(@PathVariable("master") master: String) =
-            clientForMaster(master)
-                    .repoService
-                    .listRepos()
-                    .map { repo -> repo.namespace }
-                    .distinct()
+    fun namespaces(@PathVariable("master") master: String): List<String> {
+        val response = clientForMaster(master)
+                .repoService
+                .listRepos()
+                .execute()
+        if (response.isSuccessful) return response
+                .body()
+                ?.map { repo: Repo -> repo.namespace }
+                ?.distinct()
+                .orEmpty()
+        throw DroneMasterException(response.message())
+    }
 
-    @GetMapping("/{master}/repos/{namespace}")
-    fun reposByNamespace(@PathVariable("master") master: String, @PathVariable("namespace") namespace: String) =
-            clientForMaster(master)
-                    .repoService
-                    .listRepos()
-                    .filter { repo -> repo.namespace == namespace }
+    @GetMapping("/{master}/namespaces/{namespace}/repos")
+    fun reposByNamespace(@PathVariable("master") master: String, @PathVariable("namespace") namespace: String) : Repos {
+        val response = clientForMaster(master)
+                .repoService
+                .listRepos()
+                .execute()
+        if (response.isSuccessful) return response
+                .body()
+                ?.filter { repo -> repo.namespace == namespace }
+                ?.distinct()
+                .orEmpty()
+        throw DroneMasterException(response.message())
+    }
+
+    @ResponseStatus(code = HttpStatus.SERVICE_UNAVAILABLE, reason = "Request to master failed")
+    class DroneMasterException(override val message: String) : RuntimeException(message)
 }

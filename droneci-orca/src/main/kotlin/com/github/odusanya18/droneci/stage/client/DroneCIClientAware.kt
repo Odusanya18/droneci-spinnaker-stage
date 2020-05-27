@@ -6,10 +6,7 @@ open class DroneCIClientAware(val droneCIProperties: DroneCIProperties) {
 
     protected fun clientForMaster(masterName: String): DroneCIClient {
         val master = droneCIProperties.getMasterByName(masterName)
-        master.refresh?.let {
-            return DroneCIClient(master.baseUrl, master.token, it)
-        }
 
-        return DroneCIClient(master.baseUrl, master.token)
+        return DroneCIClient(master.baseUrl!!, master.token!!)
     }
 }

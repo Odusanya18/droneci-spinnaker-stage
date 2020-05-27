@@ -17,6 +17,7 @@ class ApproveDroneCITask(droneCIProperties: DroneCIProperties) : Task, DroneCICl
         val approvedBuild = clientForMaster(execution.master)
                 .buildService
                 .approveBuild(execution.owner, execution.repoName, execution.buildNumber)
+                .execute()
         if (approvedBuild.isSuccessful){
             return TaskUtil.taskResult(ExecutionStatus.SUCCEEDED, "approved: ${execution.buildNumber}")
         }
