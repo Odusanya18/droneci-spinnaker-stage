@@ -16,7 +16,7 @@ public class DroneCIProperties {
     private Long timeout = 300L;
     private Long backOffPeriod = 500L;
 
-    @ResponseStatus(code = HttpStatus.NOT_FOUND, reason = "Master not configured")
+    @ResponseStatus(code = HttpStatus.NOT_FOUND, reason = "Masters not configured")
     public static class DroneCIPropertyException extends IllegalAccessException {
         DroneCIPropertyException(String message){
             super(message);
@@ -32,8 +32,8 @@ public class DroneCIProperties {
     public @Nonnull Master getMasterByName(String masterName) throws DroneCIPropertyException {
         if (masters != null){
             Master master = masters.get(masterName);
-            if (master != null)return master;
-        };
+            if (master != null) return master;
+        }
 
         throw new DroneCIPropertyException("Master " + masterName + " not configured");
     }

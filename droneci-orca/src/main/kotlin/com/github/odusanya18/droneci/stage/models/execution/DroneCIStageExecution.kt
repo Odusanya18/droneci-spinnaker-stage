@@ -8,5 +8,5 @@ data class DroneCIStageExecution (
         val namespace: String?,
         val branch: String?,
         val commit: String?,
-        val environment: Map<String, String>
+        val environment: Map<String, String>?
 )
