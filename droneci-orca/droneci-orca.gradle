@@ -49,12 +49,6 @@ dependencies {
     compileOnly(group: 'org.pf4j', name: 'pf4j', version: "${pf4jVersion}")
     kapt(group: 'org.pf4j', name: 'pf4j', version: "${pf4jVersion}")
 
-    compileOnly 'org.projectlombok:lombok:1.18.12'
-    annotationProcessor 'org.projectlombok:lombok:1.18.12'
-
-    testCompileOnly 'org.projectlombok:lombok:1.18.12'
-    testAnnotationProcessor 'org.projectlombok:lombok:1.18.12'
-
     compileOnly (group: 'org.springframework', name: 'spring-context', version: "${springVersion}")
     compileOnly (group: 'org.springframework', name: 'spring-web', version: "${springVersion}")
     compileOnly (group: 'org.springframework.boot', name: 'spring-boot-starter', version: "${springBootVersion}")
