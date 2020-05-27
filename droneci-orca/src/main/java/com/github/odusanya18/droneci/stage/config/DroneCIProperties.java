@@ -1,9 +1,10 @@
 package com.github.odusanya18.droneci.stage.config;
 
-import com.github.odusanya18.droneci.stage.models.Master;
+import com.github.odusanya18.droneci.stage.models.config.Master;
 import com.netflix.spinnaker.kork.plugins.api.ExtensionConfiguration;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
+import javax.annotation.Nonnull;
 import java.util.Map;
 
 @ExtensionConfiguration("odusanya18.drone-ci")
@@ -13,8 +14,23 @@ public class DroneCIProperties {
     private Long timeout = 300L;
     private Long backOffPeriod = 500L;
 
-    public Map<String, Master> getMasters() {
-        return masters;
+    public static class DroneCIPropertyException extends IllegalAccessException {
+        DroneCIPropertyException(String message){
+            super(message);
+        }
+    }
+
+    public @Nonnull Map<String, Master> getMasters() throws DroneCIPropertyException {
+        if (masters != null && !masters.isEmpty()) return masters;
+
+        throw new DroneCIPropertyException("Masters not configured");
+    }
+
+    public @Nonnull Master getMasterByName(String masterName) throws DroneCIPropertyException {
+        Master master = masters.get(masterName);
+        if (master != null)return master;
+
+        throw new DroneCIPropertyException("Master " + masterName + " not configured");
     }
 
     public void setMasters(Map<String, Master> masters) {

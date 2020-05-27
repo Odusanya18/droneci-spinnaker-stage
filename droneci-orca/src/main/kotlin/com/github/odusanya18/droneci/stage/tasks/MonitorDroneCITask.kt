@@ -2,8 +2,8 @@ package com.github.odusanya18.droneci.stage.tasks
 
 import com.github.odusanya18.droneci.stage.client.DroneCIClientAware
 import com.github.odusanya18.droneci.stage.config.DroneCIProperties
-import com.github.odusanya18.droneci.stage.models.definition.CIStageDefinition
 import com.github.odusanya18.droneci.stage.models.BuildStatus
+import com.github.odusanya18.droneci.stage.models.execution.DroneCIStageExecution
 import com.github.odusanya18.droneci.stage.util.TaskUtil.taskResult
 import com.netflix.spinnaker.orca.api.pipeline.RetryableTask
 import com.netflix.spinnaker.orca.api.pipeline.TaskResult
@@ -21,26 +21,16 @@ class MonitorDroneCITask(droneCIProperties: DroneCIProperties) : RetryableTask, 
     override fun getBackoffPeriod() = TimeUnit.SECONDS.toMillis(droneCIProperties.backOffPeriod)
 
     override fun execute(stage: StageExecution): TaskResult {
-        val stageDefinition = stage.mapTo(CIStageDefinition::class.java)
-
-        clientForMaster(stageDefinition.master)?.let {client->
-            stageDefinition.context?.let { context ->
-                val infoBuild = client
-                    .buildService
-                    .infoBuild(
-                        context["owner"] as String,
-                        context["repo"] as String,
-                        context["buildNumber"] as String
-                    )
-                return when (BuildStatus.valueOf(infoBuild.status)) {
-                    BuildStatus.SUCCESS -> taskResult(ExecutionStatus.SUCCEEDED, infoBuild)
-                    BuildStatus.FAILED -> taskResult(ExecutionStatus.TERMINAL, infoBuild)
-                    BuildStatus.PENDING -> taskResult(ExecutionStatus.NOT_STARTED, infoBuild)
-                    BuildStatus.RUNNING -> taskResult(ExecutionStatus.RUNNING, infoBuild)
-                }
-            }
+        val execution = stage.mapTo(DroneCIStageExecution::class.java)
+        val infoBuild = clientForMaster(execution.master)
+                .buildService
+                .infoBuild(execution.owner, execution.repoName, execution.buildNumber)
+        return when (BuildStatus.valueOf(infoBuild.status)) {
+            BuildStatus.SUCCESS -> taskResult(ExecutionStatus.SUCCEEDED, infoBuild)
+            BuildStatus.FAILED -> taskResult(ExecutionStatus.TERMINAL, infoBuild)
+            BuildStatus.PENDING -> taskResult(ExecutionStatus.NOT_STARTED, infoBuild)
+            BuildStatus.RUNNING -> taskResult(ExecutionStatus.RUNNING, infoBuild)
         }
-        return taskResult(ExecutionStatus.TERMINAL, "failed")
     }
 
 }

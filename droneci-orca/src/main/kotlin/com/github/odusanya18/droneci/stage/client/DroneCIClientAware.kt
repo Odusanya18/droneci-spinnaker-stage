@@ -4,8 +4,12 @@ import com.github.odusanya18.droneci.stage.config.DroneCIProperties
 
 open class DroneCIClientAware(val droneCIProperties: DroneCIProperties) {
 
-    protected fun clientForMaster(masterName: String) =
-            droneCIProperties.masters?.get(masterName)?.let { master ->
-                        DroneCIClient(master.baseUrl, master.token, master.refresh)
-            }
+    protected fun clientForMaster(masterName: String): DroneCIClient {
+        val master = droneCIProperties.getMasterByName(masterName)
+        master.refresh?.let {
+            return DroneCIClient(master.baseUrl, master.token, it)
+        }
+
+        return DroneCIClient(master.baseUrl, master.token)
+    }
 }

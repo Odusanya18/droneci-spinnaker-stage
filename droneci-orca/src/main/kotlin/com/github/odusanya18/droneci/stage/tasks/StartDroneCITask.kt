@@ -2,7 +2,7 @@ package com.github.odusanya18.droneci.stage.tasks
 
 import com.github.odusanya18.droneci.stage.client.DroneCIClientAware
 import com.github.odusanya18.droneci.stage.config.DroneCIProperties
-import com.github.odusanya18.droneci.stage.models.definition.CIStageDefinition
+import com.github.odusanya18.droneci.stage.models.execution.DroneCIStageExecution
 import com.github.odusanya18.droneci.stage.util.TaskUtil.taskResult
 import com.netflix.spinnaker.orca.api.pipeline.RetryableTask
 import com.netflix.spinnaker.orca.api.pipeline.TaskResult
@@ -17,23 +17,17 @@ class StartDroneCITask(droneCIProperties: DroneCIProperties) : RetryableTask, Dr
     override fun getTimeout() = TimeUnit.SECONDS.toMillis(droneCIProperties.timeout)
     override fun getBackoffPeriod() = TimeUnit.SECONDS.toMillis(droneCIProperties.backOffPeriod)
 
-    @Suppress("UNCHECKED_CAST")
     override fun execute(stage: StageExecution): TaskResult {
-        val stageDefinition = stage.mapTo(CIStageDefinition::class.java)
-        clientForMaster(stageDefinition.master)?.let { client ->
-            stageDefinition.context?.let { context ->
-                val queuedBuild = client
-                    .buildService
-                    .createBuild(
-                        context["namespace"] as String,
-                        context["name"] as String,
-                        context["branch"] as String?,
-                        context["commit"] as String?,
-                        context["environment"] as Map<String, String>?
-                    )
-                return taskResult(ExecutionStatus.SUCCEEDED, queuedBuild)
-            }
-        }
-        return taskResult(ExecutionStatus.TERMINAL, "failed")
+        val execution = stage.mapTo(DroneCIStageExecution::class.java)
+        val queuedBuild = clientForMaster(execution.master)
+                .buildService
+                .createBuild(
+                        execution.namespace,
+                        execution.repoName,
+                        execution.branch,
+                        execution.commit,
+                        execution.environment
+                )
+        return taskResult(ExecutionStatus.SUCCEEDED, queuedBuild)
     }
 }

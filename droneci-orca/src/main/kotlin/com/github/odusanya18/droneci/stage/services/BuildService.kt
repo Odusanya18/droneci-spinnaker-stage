@@ -9,15 +9,15 @@ import retrofit2.http.*
 interface BuildService {
     @GET("/api/repos/{owner}/{repo}/builds/{buildNumber}")
     fun infoBuild(
-        @Path("owner") owner: String,
-        @Path("repo") repo: String,
-        @Path("buildNumber") buildNumber: String
+        @Path("owner") owner: String?,
+        @Path("repo") repo: String?,
+        @Path("buildNumber") buildNumber: Long?
     ) : Build
 
     @POST("/api/repos/{namespace}/{name}/builds")
     fun createBuild(
-        @Path("namespace") namespace: String,
-        @Path("name") name: String,
+        @Path("namespace") namespace: String?,
+        @Path("name") name: String?,
         @Query("branch") branch: String? = null,
         @Query("commit") commit: String? = null,
         @QueryMap environment: Map<String, String>? = null
@@ -47,21 +47,21 @@ interface BuildService {
 
     @DELETE("/api/repos/{owner}/{repo}/builds/{buildNumber}")
     fun stopBuild(
-        @Path("owner") owner: String,
-        @Path("buildNumber") buildNumber: String
+        @Path("owner") owner: String?,
+        @Path("buildNumber") buildNumber: Long?
     ) : Response<Void>
 
     @POST("/api/repos/{owner}/{repo}/builds/{buildNumber}/approve")
     fun approveBuild(
-        @Path("owner") owner: String,
-        @Path("repo") repo: String,
-        @Path("buildNumber") buildNumber: String
+        @Path("owner") owner: String?,
+        @Path("repo") repo: String?,
+        @Path("buildNumber") buildNumber: Long?
     ) : Response<Void>
 
     @POST("/api/repos/{owner}/{repo}/builds/{buildNumber}/decline")
     fun declineBuild(
-        @Path("owner") owner: String,
-        @Path("repo") repo: String,
-        @Path("buildNumber") buildNumber: String
+        @Path("owner") owner: String?,
+        @Path("repo") repo: String?,
+        @Path("buildNumber") buildNumber: Long?
     ) : Response<Void>
 }
