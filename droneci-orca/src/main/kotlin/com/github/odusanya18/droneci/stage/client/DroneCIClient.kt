@@ -5,10 +5,9 @@ import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-import java.time.ZonedDateTime
 import kotlin.reflect.KClass
 
-class DroneCIClient(private val host: String, var token: String) {
+class DroneCIClient(private val host: String, private var token: String) {
     private val converter = GsonConverterFactory.create()
     private val okHttpClient = OkHttpClient()
         .newBuilder()

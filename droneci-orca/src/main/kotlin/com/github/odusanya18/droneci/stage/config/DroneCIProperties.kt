@@ -16,11 +16,11 @@
 
 package com.github.odusanya18.droneci.stage.config
 
+import com.github.odusanya18.droneci.stage.models.Master
 import com.netflix.spinnaker.kork.plugins.api.ExtensionConfiguration
 import org.springframework.boot.context.properties.ConfigurationProperties
 import org.springframework.http.HttpStatus
 import org.springframework.web.bind.annotation.ResponseStatus
-import javax.annotation.Nonnull
 
 @ExtensionConfiguration("odusanya18.drone-ci")
 @ConfigurationProperties("spinnaker.extensibility.plugins.odusanya18.drone-ci")
@@ -32,15 +32,11 @@ class DroneCIProperties {
     @ResponseStatus(code = HttpStatus.NOT_FOUND, reason = "Masters not configured")
     class DroneCIPropertyException internal constructor(message: String?) : IllegalAccessException(message)
 
-    @Nonnull
-    @Throws(DroneCIPropertyException::class)
     fun getMasters(): List<Master> {
         if (masters.isNotEmpty()) return masters
         throw DroneCIPropertyException("Masters not configured")
     }
 
-    @Nonnull
-    @Throws(DroneCIPropertyException::class)
     fun getMasterByName(masterName: String): Master {
         val master = masters
                 .stream()

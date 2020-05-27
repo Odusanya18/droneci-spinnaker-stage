@@ -1,9 +1,7 @@
 package com.github.odusanya18.droneci.stage.services
 
 import com.github.odusanya18.droneci.stage.models.Build
-import com.github.odusanya18.droneci.stage.models.Builds
 import retrofit2.Call
-import retrofit2.Response
 import retrofit2.http.*
 
 
@@ -24,13 +22,6 @@ interface BuildService {
         @QueryMap environment: Map<String, String>? = null
     ) : Build
 
-    @POST("/api/repos/{owner}/{repo}/builds/{buildNumber}")
-    fun restartBuild(
-        @Path("owner") owner: String,
-        @Path("repo") repo : String,
-        @Path("buildNumber") buildNumber: String
-    ) : Build
-
     @POST("/api/repos/{owner}/{repo}/builds/{buildNumber}/promote")
     fun promoteBuild(
         @Path("owner") owner: String,
@@ -38,19 +29,13 @@ interface BuildService {
         @Path("buildNumber") buildNumber: String,
         @Query("target") target: String,
         @QueryMap environment: Map<String, String>? = null
-    ) : Build
-
-    @GET("/api/repos/{owner}/{repo}/builds")
-    fun listBuilds(
-        @Path("owner") owner: String,
-        @Path("repo") repo : String
-    ) : Builds
+    ) : Call<Build>
 
     @DELETE("/api/repos/{owner}/{repo}/builds/{buildNumber}")
     fun stopBuild(
         @Path("owner") owner: String?,
         @Path("buildNumber") buildNumber: Long?
-    ) : Response<Void>
+    ) : Call<Void>
 
     @POST("/api/repos/{owner}/{repo}/builds/{buildNumber}/approve")
     fun approveBuild(

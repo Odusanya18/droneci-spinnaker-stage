@@ -2,7 +2,7 @@ package com.github.odusanya18.droneci.stage.tasks
 
 import com.github.odusanya18.droneci.stage.client.DroneCIClientAware
 import com.github.odusanya18.droneci.stage.config.DroneCIProperties
-import com.github.odusanya18.droneci.stage.models.BuildStatus
+import com.github.odusanya18.droneci.stage.models.execution.BuildStatus
 import com.github.odusanya18.droneci.stage.models.execution.DroneCIStageExecution
 import com.github.odusanya18.droneci.stage.util.TaskUtil.taskResult
 import com.netflix.spinnaker.orca.api.pipeline.RetryableTask

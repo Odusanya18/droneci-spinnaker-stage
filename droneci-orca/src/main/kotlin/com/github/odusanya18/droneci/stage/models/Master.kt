@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.github.odusanya18.droneci.stage.config
+package com.github.odusanya18.droneci.stage.models
 
 data class Master (
         var name: String? = null,
