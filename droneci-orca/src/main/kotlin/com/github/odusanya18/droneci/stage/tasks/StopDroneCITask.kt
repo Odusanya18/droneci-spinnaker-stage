@@ -22,7 +22,7 @@ class StopDroneCITask(droneCIProperties: DroneCIProperties) : Task, DroneCIClien
                 .stopBuild(execution.owner, execution.buildNumber)
                 .execute()
         if (cancelledBuild.isSuccessful){
-            return taskResult(ExecutionStatus.CANCELED, "Cancelled: ${execution.buildNumber}")
+            return taskResult(ExecutionStatus.SUCCEEDED, "Cancelled: ${execution.buildNumber}")
         }
         return taskResult(ExecutionStatus.TERMINAL, "failed")
     }
