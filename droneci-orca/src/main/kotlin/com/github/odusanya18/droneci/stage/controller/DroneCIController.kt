@@ -5,9 +5,11 @@ import com.github.odusanya18.droneci.stage.config.DroneCIProperties
 import com.github.odusanya18.droneci.stage.models.Repo
 import com.github.odusanya18.droneci.stage.models.Repos
 import org.springframework.http.HttpStatus
+import org.springframework.security.access.prepost.PreAuthorize
 import org.springframework.web.bind.annotation.*
 
 
+@PreAuthorize("isAuthenticated()")
 @RestController()
 @RequestMapping("/drone-ci/masters")
 class DroneCIController(droneCIProperties: DroneCIProperties): DroneCIClientAware(droneCIProperties) {
