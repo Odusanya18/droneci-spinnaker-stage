@@ -7,7 +7,7 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import kotlin.reflect.KClass
 
-class DroneCIClient(private val host: String, private val token: String) {
+class DroneCIClient(private val baseUrl: String, private val token: String) {
     private val converter = GsonConverterFactory.create()
     private val okHttpClient = OkHttpClient()
         .newBuilder()
@@ -28,7 +28,7 @@ class DroneCIClient(private val host: String, private val token: String) {
 
     private fun <S : Any> createService(serviceClass: KClass<S>): S {
         return Retrofit.Builder()
-            .baseUrl(host)
+            .baseUrl(baseUrl)
             .client(okHttpClient)
             .addConverterFactory(converter)
             .build()
