@@ -3,6 +3,7 @@ package com.github.odusanya18.droneci.stage.tasks
 import com.github.odusanya18.droneci.stage.client.DroneCIClientAware
 import com.github.odusanya18.droneci.stage.config.DroneCIProperties
 import com.github.odusanya18.droneci.stage.models.execution.DroneCIStageExecution
+import com.github.odusanya18.droneci.stage.util.TaskUtil
 import com.github.odusanya18.droneci.stage.util.TaskUtil.taskResult
 import com.netflix.spinnaker.orca.api.pipeline.RetryableTask
 import com.netflix.spinnaker.orca.api.pipeline.TaskResult
@@ -28,6 +29,14 @@ class StartDroneCITask(droneCIProperties: DroneCIProperties) : RetryableTask, Dr
                         execution.commit,
                         execution.environment
                 )
-        return taskResult(ExecutionStatus.SUCCEEDED, queuedBuild)
+                .execute()
+        if (queuedBuild.isSuccessful){
+            queuedBuild
+                    .body()
+                    ?.let {
+                return taskResult(ExecutionStatus.SUCCEEDED, it)
+            }
+        }
+        return taskResult(ExecutionStatus.TERMINAL, "failed {${execution.buildNumber}}")
     }
 }

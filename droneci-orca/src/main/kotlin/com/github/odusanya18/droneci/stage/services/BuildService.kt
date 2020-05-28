@@ -11,7 +11,7 @@ interface BuildService {
         @Path("owner") owner: String?,
         @Path("repo") repo: String?,
         @Path("buildNumber") buildNumber: Long?
-    ) : Build
+    ) : Call<Build>
 
     @POST("/api/repos/{namespace}/{name}/builds")
     fun createBuild(
@@ -20,7 +20,7 @@ interface BuildService {
         @Query("branch") branch: String? = null,
         @Query("commit") commit: String? = null,
         @QueryMap environment: Map<String, String>? = null
-    ) : Build
+    ) : Call<Build>
 
     @POST("/api/repos/{owner}/{repo}/builds/{buildNumber}/promote")
     fun promoteBuild(

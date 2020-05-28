@@ -25,12 +25,20 @@ class MonitorDroneCITask(droneCIProperties: DroneCIProperties) : RetryableTask, 
         val infoBuild = clientForMaster(execution.master)
                 .buildService
                 .infoBuild(execution.owner, execution.repoName, execution.buildNumber)
-        return when (BuildStatus.valueOf(infoBuild.status)) {
-            BuildStatus.SUCCESS -> taskResult(ExecutionStatus.SUCCEEDED, infoBuild)
-            BuildStatus.FAILED -> taskResult(ExecutionStatus.TERMINAL, infoBuild)
-            BuildStatus.PENDING -> taskResult(ExecutionStatus.NOT_STARTED, infoBuild)
-            BuildStatus.RUNNING -> taskResult(ExecutionStatus.RUNNING, infoBuild)
+                .execute()
+        if (infoBuild.isSuccessful){
+            infoBuild
+                    .body()
+                    ?.let {
+                        return when (BuildStatus.valueOf(it.status)) {
+                            BuildStatus.SUCCESS -> taskResult(ExecutionStatus.SUCCEEDED, infoBuild)
+                            BuildStatus.FAILED -> taskResult(ExecutionStatus.TERMINAL, infoBuild)
+                            BuildStatus.PENDING -> taskResult(ExecutionStatus.NOT_STARTED, infoBuild)
+                            BuildStatus.RUNNING -> taskResult(ExecutionStatus.RUNNING, infoBuild)
+                        }
+                    }
         }
+        return taskResult(ExecutionStatus.TERMINAL, "could not query {${execution.buildNumber}}")
     }
 
 }
