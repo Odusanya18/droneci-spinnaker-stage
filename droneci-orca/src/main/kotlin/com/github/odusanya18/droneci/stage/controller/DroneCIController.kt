@@ -47,5 +47,5 @@ class DroneCIController(droneCIProperties: DroneCIProperties): DroneCIClientAwar
     }
 
     @ResponseStatus(code = HttpStatus.SERVICE_UNAVAILABLE, reason = "Request to master failed")
-    class DroneMasterException internal constructor(message: String?) : RuntimeException(message)
+    class DroneMasterException internal constructor(message: String?) : RuntimeException("Drone: $message")
 }
