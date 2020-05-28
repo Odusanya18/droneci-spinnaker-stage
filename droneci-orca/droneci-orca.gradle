@@ -52,9 +52,7 @@ dependencies {
     compileOnly (group: 'org.springframework', name: 'spring-context', version: springVersion)
     compileOnly (group: 'org.springframework', name: 'spring-web', version: springVersion)
     compileOnly (group: 'org.springframework.boot', name: 'spring-boot-starter', version: springBootVersion)
-
-    compileOnly (group: 'org.springframework.security', name: 'spring-security-web', version: springVersion)
-    compileOnly (group: 'org.springframework.security', name: 'spring-security-test', version: springVersion)
+    compileOnly (group: 'org.springframework.boot', name: 'spring-boot-starter-security', version: springBootVersion)
 
     compileOnly (group: 'com.netflix.spinnaker.kork', name: 'kork-plugins-api', version: korkVersion)
     compileOnly (group: 'com.netflix.spinnaker.kork', name: 'kork-plugins-spring-api', version: korkVersion)

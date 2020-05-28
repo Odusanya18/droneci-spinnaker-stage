@@ -1,6 +1,7 @@
 package com.github.odusanya18.droneci.stage
 
 import com.github.odusanya18.droneci.stage.config.DroneCIProperties
+import com.github.odusanya18.droneci.stage.config.DroneCISecurityConfig
 import com.github.odusanya18.droneci.stage.controller.DroneCIController
 import com.github.odusanya18.droneci.stage.tasks.*
 import com.netflix.spinnaker.orca.api.pipeline.graph.TaskNode.Builder
@@ -13,7 +14,11 @@ import org.springframework.beans.factory.support.BeanDefinitionRegistry
 
 class DroneCIPlugin(wrapper: PluginWrapper) : PrivilegedSpringPlugin(wrapper) {
     override fun registerBeanDefinitions(registry: BeanDefinitionRegistry) {
-        listOf(DroneCIController::class.java, DroneCIProperties::class.java).forEach {
+        listOf(
+                DroneCIController::class.java,
+                DroneCIProperties::class.java,
+                DroneCISecurityConfig::class.java
+                ).forEach {
             registerBean(beanDefinitionFor(it), registry)
         }
     }

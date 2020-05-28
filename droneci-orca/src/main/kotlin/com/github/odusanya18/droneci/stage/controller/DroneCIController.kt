@@ -9,12 +9,10 @@ import org.springframework.web.bind.annotation.*
 import java.io.IOException
 
 @RestController
-// TODO: @PreAuthorize("isAuthenticated()") spring aop issues
 @RequestMapping("/drone-ci/masters")
-class DroneCIController(droneCIProperties: DroneCIProperties) : DroneCIClientAware(droneCIProperties) {
-    @get:GetMapping
-    val masters: List<String?>
-        get() = droneCIProperties
+open class DroneCIController(droneCIProperties: DroneCIProperties) : DroneCIClientAware(droneCIProperties) {
+    @GetMapping
+    fun masters() = droneCIProperties
                 .getMasters()
                 .map(Master::name)
 
@@ -51,5 +49,5 @@ class DroneCIController(droneCIProperties: DroneCIProperties) : DroneCIClientAwa
     }
 
     @ResponseStatus(code = HttpStatus.SERVICE_UNAVAILABLE, reason = "Request to master failed")
-    private class DroneMasterException internal constructor(message: String) : IOException("Drone: $message")
+    private class DroneMasterException internal constructor(message: String) : IOException(message)
 }
