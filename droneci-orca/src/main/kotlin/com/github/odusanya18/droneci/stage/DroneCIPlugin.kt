@@ -22,23 +22,23 @@ class DroneCIPlugin(wrapper: PluginWrapper) : PrivilegedSpringPlugin(wrapper) {
             registerBean(beanDefinitionFor(it), registry)
         }
     }
+}
 
-    @Extension
-    class DroneCIStage : StageDefinitionBuilder {
-        override fun taskGraph(stage: StageExecution, builder: Builder) {
-            builder
-                .withTask("startDroneCITask", StartDroneCITask::class.java)
-                .withTask("monitorDroneCITask", MonitorDroneCITask::class.java)
-                .withTask("stopDroneCITask", StopDroneCITask::class.java)
-        }
+@Extension
+class DroneCIStage : StageDefinitionBuilder {
+    override fun taskGraph(stage: StageExecution, builder: Builder) {
+        builder
+            .withTask("startDroneCITask", StartDroneCITask::class.java)
+            .withTask("monitorDroneCITask", MonitorDroneCITask::class.java)
+            .withTask("stopDroneCITask", StopDroneCITask::class.java)
     }
+}
 
-    @Extension
-    class DroneCIApprovalStage : StageDefinitionBuilder {
-        override fun taskGraph(stage: StageExecution, builder: Builder) {
-            builder
-                .withTask("approveDroneCITask", ApproveDroneCITask::class.java)
-                .withTask("declineDroneCITask", DeclineDroneCITask::class.java)
-        }
+@Extension
+class DroneCIApprovalStage : StageDefinitionBuilder {
+    override fun taskGraph(stage: StageExecution, builder: Builder) {
+        builder
+            .withTask("approveDroneCITask", ApproveDroneCITask::class.java)
+            .withTask("declineDroneCITask", DeclineDroneCITask::class.java)
     }
 }

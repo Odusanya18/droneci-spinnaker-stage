@@ -1,0 +1,39 @@
+front50:
+  enabled: false
+
+igor:
+  enabled: false
+
+bakery:
+  enabled: false
+
+echo:
+  enabled: false
+
+monitor:
+  activeExecutions:
+    redis: false
+
+executionRepository:
+  redis:
+    enabled: false
+
+spring:
+  application:
+    name: orca
+
+spinnaker:
+  extensibility:
+    plugins-root-path: build/plugins
+    plugins:
+      odusanya18.drone-ci.Enabled:
+        enabled: true
+      odusanya18.drone-ci.Disabled:
+        enabled: false
+      odusanya18.drone-ci.NotSupported:
+        enabled: true
+
+
+services:
+  fiat:
+    baseUrl: https://fiat.net
