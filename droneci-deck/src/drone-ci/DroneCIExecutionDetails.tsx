@@ -19,11 +19,11 @@ export function DroneCIExecutionDetails(props: IExecutionDetailsSectionProps) {
     return (
       <ExecutionDetailsSection name={name} current={current}>
         <dl className="dl-narrow dl-horizontal">
-          <dt>Build Service</dt>
+          <dt>Build Master</dt>
           <dd>{context.master}</dd>
           <dt>Build Namespace</dt>
           <dd>{context.namespace}</dd>
-          <dt>Build Repository</dt>
+          <dt>Repository</dt>
           <dd>{context.repo}</dd>
           <dt>Build</dt>
           <dd>{context.buildNumber}</dd>

@@ -14,7 +14,7 @@ export const droneCIStage: IStageTypeConfig = {
     strategy: true,
     validators: [
         { type: 'requiredField', fieldName: 'master' },
-        { type: 'requiredField', fieldName: 'namespace', fieldLabel: 'Team Namespace' },
+        { type: 'requiredField', fieldName: 'namespace', fieldLabel: 'Build Namespace' },
         { type: 'requiredField', fieldName: 'repo', fieldLabel: 'Repository' },
     ],
 }
