@@ -63,7 +63,7 @@ export class DroneCIStageConfig extends React.Component<IStageConfigProps, IDron
             />
           )}
         </StageConfigField>
-        <StageConfigField label="Pipeline">
+        <StageConfigField label="Repository">
           {!namespace && <p className="form-control-static">(Select a build master and namespace)</p>}
           {namespace && (
             <Select
