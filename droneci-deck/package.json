@@ -11,7 +11,7 @@
   },
   "dependencies": {
     "@spinnaker/core": "0.0.477",
-    "@spinnaker/pluginsdk": "^0.0.14",
+    "@spinnaker/pluginsdk": "0.0.14",
     "@uirouter/core": "6.0.4",
     "@uirouter/react": "1.0.2",
     "angular": "^1.6.10",

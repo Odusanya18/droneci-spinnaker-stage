@@ -76,7 +76,7 @@
   dependencies:
     lodash "^4.17.15"
 
-"@spinnaker/pluginsdk@^0.0.14":
+"@spinnaker/pluginsdk@0.0.14":
   version "0.0.14"
   resolved "https://registry.yarnpkg.com/@spinnaker/pluginsdk/-/pluginsdk-0.0.14.tgz#e066cfba69bd7d22c0e718cfa7f0b52858c00939"
   integrity sha512-+GXXF4WrKy6mLUEkkiqE64o38fCXFTZSaUZdlLY4Fh3pG+CyoM3gnc9NoeelZjyFAVYZDGO0RajSEMQfvv5LgA==
