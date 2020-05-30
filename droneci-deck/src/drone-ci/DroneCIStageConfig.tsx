@@ -1,7 +1,7 @@
 import React from 'react';
 
 import Select, { Option } from 'react-select';
-import { BuildServiceType, StageConfigField, IStageConfigProps } from '@spinnaker/core';
+import { StageConfigField, IStageConfigProps } from '@spinnaker/core';
 import { DroneService } from '../services/droneci.service';
 
 export interface IDroneCIStageConfigState {
