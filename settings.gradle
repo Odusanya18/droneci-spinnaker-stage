@@ -8,7 +8,7 @@ pluginManagement {
 
 rootProject.name = "droneci"
 
-include "droneci-orca", "droneci-orca-test"
+include "droneci-orca", "droneci-orca-test", "droneci-deck"
 
 def setBuildFile(project) {
     project.buildFileName = "${project.name}.gradle"

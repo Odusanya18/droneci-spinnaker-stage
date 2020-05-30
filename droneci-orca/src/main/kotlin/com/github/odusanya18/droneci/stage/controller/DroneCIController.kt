@@ -33,7 +33,7 @@ open class DroneCIController(droneCIProperties: DroneCIProperties) : DroneCIClie
     }
 
     @GetMapping("/{master}/namespaces/{namespace}/repos")
-    fun reposByNamespace(@PathVariable("master") master: String, @PathVariable("namespace") namespace: String): List<Repo> {
+    fun reposByNamespace(@PathVariable("master") master: String, @PathVariable("namespace") namespace: String): List<String> {
         val repos = clientForMaster(master)
                 .repoService
                 .listRepos()
@@ -42,6 +42,7 @@ open class DroneCIController(droneCIProperties: DroneCIProperties) : DroneCIClie
             return repos
                     .body()
                     ?.filter { repo -> repo.namespace == namespace }
+                    ?.map(Repo::name)
                     ?.distinct()
                     .orEmpty()
         }
