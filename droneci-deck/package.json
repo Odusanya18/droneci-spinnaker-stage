@@ -2,8 +2,8 @@
   "name": "droneci-deck",
   "version": "1.0.0",
   "description": "Drone CI Build, Approval, Promotion plugin deck-ui",
-  "main": "build/dist/index.js",
-  "module": "build/dist/index.es.js",
+  "main": "build/dist/index.c.js",
+  "module": "build/dist/index.js",
   "files": [
     "build/dist"
   ],
