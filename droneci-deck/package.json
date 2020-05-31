@@ -43,6 +43,7 @@
     "rollup-plugin-less": "1.1.2",
     "rollup-plugin-postcss": "3.1.1",
     "shx": "0.3.2",
+    "tslib": "^2.0.0",
     "typescript": "3.8.3"
   },
   "files": [
