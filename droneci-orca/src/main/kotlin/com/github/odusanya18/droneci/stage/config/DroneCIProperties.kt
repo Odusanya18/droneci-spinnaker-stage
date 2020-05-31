@@ -8,10 +8,10 @@ import org.springframework.web.bind.annotation.ResponseStatus
 
 @ExtensionConfiguration("odusanya18.drone-ci")
 @ConfigurationProperties("spinnaker.extensibility.plugins.odusanya18.drone-ci")
-open class DroneCIProperties (
-    private var masters: List<Master> = emptyList(),
-    var timeout: Long = 300L,
-    var backOffPeriod: Long = 500L) {
+open class DroneCIProperties {
+    private var masters: List<Master> = emptyList()
+    var timeout = 300L
+    var backOffPeriod = 500L
 
     @ResponseStatus(code = HttpStatus.NOT_FOUND, reason = "Masters not configured")
     class DroneCIPropertyException internal constructor(message: String?) : IllegalAccessException(message)

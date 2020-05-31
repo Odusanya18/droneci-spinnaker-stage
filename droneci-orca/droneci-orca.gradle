@@ -49,21 +49,21 @@ dependencies {
     compileOnly(group: 'org.pf4j', name: 'pf4j', version: pf4jVersion)
     kapt(group: 'org.pf4j', name: 'pf4j', version: pf4jVersion)
 
-    implementation (group: 'org.springframework', name: 'spring-context', version: springVersion)
-    implementation (group: 'org.springframework', name: 'spring-web', version: springVersion)
-
-    implementation (group: 'org.springframework.boot', name: 'spring-boot-starter', version: springBootVersion)
-    implementation (group: 'org.springframework.boot', name: 'spring-boot-starter-web', version: springBootVersion)
-    implementation (group: 'org.springframework.boot', name: 'spring-boot-starter-security', version: springBootVersion)
+    compileOnly (group: 'org.springframework', name: 'spring-context', version: springVersion)
+    compileOnly (group: 'org.springframework', name: 'spring-web', version: springVersion)
+    compileOnly (group: 'org.springframework.security', name: 'spring-security-config', version: springVersion)
 
     compileOnly (group: 'com.netflix.spinnaker.kork', name: 'kork-plugins-api', version: korkVersion)
     compileOnly (group: 'com.netflix.spinnaker.kork', name: 'kork-plugins-spring-api', version: korkVersion)
     compileOnly (group: 'com.netflix.spinnaker.orca', name: 'orca-api', version: orcaVersion)
 
-    implementation 'com.squareup.retrofit2:retrofit:2.5.0'
-    implementation 'com.squareup.retrofit2:converter-gson:2.5.0'
+    compileOnly (group: 'com.squareup.retrofit2', name: 'retrofit', version: '2.5.0')
+    compileOnly (group: 'com.squareup.retrofit2', name: 'converter-gson', version: '2.5.0')
 
     testImplementation ("org.springframework.boot:spring-boot-starter-test:$springBootVersion")
+    testImplementation (group: 'org.springframework.boot', name: 'spring-boot-starter', version: springBootVersion)
+    testImplementation (group: 'org.springframework.boot', name: 'spring-boot-starter-web', version: springBootVersion)
+    testImplementation (group: 'org.springframework.boot', name: 'spring-boot-starter-security', version: springBootVersion)
     testImplementation (group: 'org.springframework.security', name: 'spring-security-test', version: springVersion)
 
     testImplementation (group: 'com.netflix.spinnaker.orca', name: 'orca-api', version: orcaVersion)
