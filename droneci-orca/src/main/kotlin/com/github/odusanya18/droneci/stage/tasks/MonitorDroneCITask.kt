@@ -4,6 +4,8 @@ import com.github.odusanya18.droneci.stage.client.DroneCIClientAware
 import com.github.odusanya18.droneci.stage.config.DroneCIProperties
 import com.github.odusanya18.droneci.stage.models.execution.BuildStatus
 import com.github.odusanya18.droneci.stage.models.execution.DroneCIStageExecution
+import com.github.odusanya18.droneci.stage.util.TaskUtil
+import com.github.odusanya18.droneci.stage.util.TaskUtil.task
 import com.github.odusanya18.droneci.stage.util.TaskUtil.taskResult
 import com.netflix.spinnaker.orca.api.pipeline.RetryableTask
 import com.netflix.spinnaker.orca.api.pipeline.TaskResult
@@ -38,7 +40,7 @@ class MonitorDroneCITask(droneCIProperties: DroneCIProperties) : RetryableTask, 
                         }
                     }
         }
-        return taskResult(ExecutionStatus.TERMINAL, "could not query {${execution.buildNumber}}")
+        return taskResult(ExecutionStatus.TERMINAL, task("failed", execution.buildNumber))
     }
 
 }

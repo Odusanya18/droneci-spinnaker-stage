@@ -3,6 +3,8 @@ package com.github.odusanya18.droneci.stage.tasks
 import com.github.odusanya18.droneci.stage.client.DroneCIClientAware
 import com.github.odusanya18.droneci.stage.config.DroneCIProperties
 import com.github.odusanya18.droneci.stage.models.execution.DroneCIStageExecution
+import com.github.odusanya18.droneci.stage.util.TaskUtil
+import com.github.odusanya18.droneci.stage.util.TaskUtil.task
 import com.github.odusanya18.droneci.stage.util.TaskUtil.taskResult
 import com.netflix.spinnaker.orca.api.pipeline.Task
 import com.netflix.spinnaker.orca.api.pipeline.TaskResult
@@ -22,8 +24,8 @@ class StopDroneCITask(droneCIProperties: DroneCIProperties) : Task, DroneCIClien
                 .stopBuild(execution.owner, execution.buildNumber)
                 .execute()
         if (cancelledBuild.isSuccessful){
-            return taskResult(ExecutionStatus.SUCCEEDED, "Cancelled: ${execution.buildNumber}")
+            return taskResult(ExecutionStatus.SUCCEEDED, task("cancelled", execution.buildNumber))
         }
-        return taskResult(ExecutionStatus.TERMINAL, "failed")
+        return taskResult(ExecutionStatus.TERMINAL, task("failed", execution.buildNumber))
     }
 }

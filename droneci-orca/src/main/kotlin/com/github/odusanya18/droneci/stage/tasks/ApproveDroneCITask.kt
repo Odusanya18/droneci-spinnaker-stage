@@ -3,6 +3,7 @@ package com.github.odusanya18.droneci.stage.tasks
 import com.github.odusanya18.droneci.stage.client.DroneCIClientAware
 import com.github.odusanya18.droneci.stage.config.DroneCIProperties
 import com.github.odusanya18.droneci.stage.models.execution.DroneCIStageExecution
+import com.github.odusanya18.droneci.stage.util.TaskUtil.task
 import com.github.odusanya18.droneci.stage.util.TaskUtil.taskResult
 import com.netflix.spinnaker.orca.api.pipeline.Task
 import com.netflix.spinnaker.orca.api.pipeline.TaskResult
@@ -19,8 +20,8 @@ class ApproveDroneCITask(droneCIProperties: DroneCIProperties) : Task, DroneCICl
                 .approveBuild(execution.owner, execution.repoName, execution.buildNumber)
                 .execute()
         if (approvedBuild.isSuccessful){
-            return taskResult(ExecutionStatus.SUCCEEDED, "approved: ${execution.buildNumber}")
+            return taskResult(ExecutionStatus.SUCCEEDED, task("success", execution.buildNumber))
         }
-        return taskResult(ExecutionStatus.TERMINAL, "failed")
+        return taskResult(ExecutionStatus.TERMINAL, task("failed", execution.buildNumber))
     }
 }
