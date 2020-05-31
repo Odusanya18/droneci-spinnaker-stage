@@ -118,14 +118,14 @@ export class DroneCIStageConfig extends React.Component<IStageConfigProps, IDron
   private fetchAvailableNamespaces = () => {
     const { master } = this.getStage();
     if (master) {
-      DroneService.listNamespacesForMaster(master).then(namespaces => this.setState({ namespaces: namespaces }));
+      DroneService.listNamespacesForMaster(master).then((namespaces: string[]) => this.setState({ namespaces: namespaces }));
     }
   };
 
   private fetchAvailableRepos = () => {
     const { master, namespace } = this.getStage();
     if (master && namespace) {
-      DroneService.listReposForNamespace(master, namespace).then(repos => this.setState({ repos: repos }));
+      DroneService.listReposForNamespace(master, namespace).then((repos: string[]) => this.setState({ repos: repos }));
     }
   };
 
