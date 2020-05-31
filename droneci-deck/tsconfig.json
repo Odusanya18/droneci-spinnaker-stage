@@ -1,8 +1,19 @@
 {
-  "extends": "@spinnaker/pluginsdk/pluginconfig/tsconfig.json",
   "compilerOptions": {
+    "allowSyntheticDefaultImports": true,
+    "declaration": true,
+    "declarationMap": true,
+    "inlineSources": true,
+    "inlineSourceMap": true,
     "esModuleInterop": true,
-    "outDir": "build/dist",
-    "rootDir": "src"
+    "experimentalDecorators": true,
+    "jsx": "react",
+    "lib": ["es2017", "dom"],
+    "module": "esnext",
+    "moduleResolution": "node",
+    "noImplicitAny": true,
+    "skipLibCheck": true,
+    "sourceMap": true,
+    "target": "es2017"
   }
 }
