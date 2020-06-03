@@ -73,3 +73,8 @@ jobs:
           asset_path: ./droneci-deck/build/dist/index.js
           asset_name: DroneCIStageIndex.js
           asset_content_type: text/javascript
+
+      - name: add release to plugin repo
+        run: |
+          curl -XPOST -u "${{ secrets.USERNAME }}:${{ secrets.TOKEN }}" -H "Accept: application/vnd.github.everest-preview+json" -H "Content-Type: application/json" https://api.github.com/repos/Odusanya18/spinnaker-plugin-repository/dispatches --data "{\"event_type\": \"onPluginRelease\", \"client_payload\": {\"org\": \"Odusanya18\", \"repo\": \"${{ steps.get_project_info.outputs.PROJECT }}\", \"released\": $(cat build/distributions/plugin-info.json)}}"
+
