@@ -11,8 +11,6 @@ jobs:
     steps:
       - name: checkout code
         uses: actions/checkout@v2
-      - name: change gradlew permission
-        run: chmod +x ./gradlew
       - name: get dependency name to update
         id: dependency_name
         run: |
