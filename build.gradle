@@ -15,7 +15,7 @@ plugins {
 spinnakerBundle {
     pluginId = "odusanya18.drone-ci"
     description = "A Drone CI build stage plugin."
-    provider = "victor.odusanya@interswitchgroup.com"
+    provider = "https://github.com/Odusanya18"
     version = rootProject.version
 }
 

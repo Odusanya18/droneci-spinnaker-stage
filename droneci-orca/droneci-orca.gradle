@@ -42,7 +42,7 @@ repositories {
 spinnakerPlugin {
     serviceName = "orca"
     pluginClass = "com.github.odusanya18.droneci.stage.DroneCIPlugin"
-    requires="orca>=0.0.0,deck>=0.0.0"
+    requires="orca>=0.0.0"
 }
 
 dependencies {
