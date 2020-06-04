@@ -15,7 +15,6 @@
     "postinstall": "check-plugin && check-peer-dependencies || true"
   },
   "repository": "https://github.com/odusanya18/droneci-spinnaker-stage.git",
-  "author": "Victor Odusanya <victor.odusanya@interswitchgroup.com>",
   "license": "MIT",
   "private": false,
   "devDependencies": {
