@@ -1,7 +1,7 @@
 import React from 'react';
 
-import Select, { Option } from 'react-select';
-import { StageConfigField, IStageConfigProps } from '@spinnaker/core';
+import { Option } from 'react-select';
+import { StageConfigField, IStageConfigProps, ReactSelectInput } from '@spinnaker/core';
 import { DroneService } from '../services/droneci.service';
 
 export interface IDroneCIStageConfigState {
@@ -43,7 +43,7 @@ export class DroneCIStageConfig extends React.Component<IStageConfigProps, IDron
     return (
       <>
         <StageConfigField label="Build Master">
-          <Select
+          <ReactSelectInput
             value={master}
             placeholder="Select a build master..."
             onChange={this.onMasterChanged}
@@ -54,7 +54,7 @@ export class DroneCIStageConfig extends React.Component<IStageConfigProps, IDron
         <StageConfigField label="Build Namespace">
           {!master && <p className="form-control-static">(Select a build master)</p>}
           {master && (
-            <Select
+            <ReactSelectInput
               value={namespace}
               placeholder="Select a namespace..."
               onChange={this.onNamespaceChanged}
@@ -66,7 +66,7 @@ export class DroneCIStageConfig extends React.Component<IStageConfigProps, IDron
         <StageConfigField label="Repository">
           {!namespace && <p className="form-control-static">(Select a build master and namespace)</p>}
           {namespace && (
-            <Select
+            <ReactSelectInput
               value={repo}
               placeholder="Select a repository..."
               onChange={this.onRepoChanged}

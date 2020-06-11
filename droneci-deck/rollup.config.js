@@ -1,6 +1,7 @@
 import typescript from 'rollup-plugin-typescript2'
 import postcss from 'rollup-plugin-postcss'
 import pkg from './package.json'
+import externalGlobals from 'rollup-plugin-external-globals'
 
 // NOTE: Base pluginsdk rollup config does not work.
 
@@ -29,6 +30,33 @@ export default {
         typescript({
           typescript: require('typescript'),
         }),
+        externalGlobals(spinnakerSharedLibraries()),
         postcss()
       ],
+    }
+
+    function spinnakerSharedLibraries() {
+      // Updates here should also be added in core/src/plugins/sharedLibraries.ts
+      const libraries = [
+        '@spinnaker/core',
+        '@uirouter/core',
+        '@uirouter/react',
+        '@uirouter/rx',
+        'lodash',
+        'prop-types',
+        'react',
+        'react-dom',
+        'rxjs',
+        'rxjs/Observable',
+      ];
+    
+      function getGlobalVariable(libraryName) {
+        const prefix = 'spinnaker.plugins.sharedLibraries';
+        const sanitizedLibraryName = libraryName.replace(/[^a-zA-Z0-9_]/g, '_');
+        return `${prefix}.${sanitizedLibraryName}`;
+      }
+    
+      return libraries.reduce((globalsMap, libraryName) => {
+        return { ...globalsMap, [libraryName]: getGlobalVariable(libraryName) };
+      }, {});
     }

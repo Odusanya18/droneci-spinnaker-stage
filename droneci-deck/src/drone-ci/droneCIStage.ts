@@ -13,7 +13,7 @@ export const droneCIStage: IStageTypeConfig = {
     executionDetailsSections: [DroneCIExecutionDetails],
     strategy: true,
     validators: [
-        { type: 'requiredField', fieldName: 'master' },
+        { type: 'requiredField', fieldName: 'master', fieldLabel: 'Build Master' },
         { type: 'requiredField', fieldName: 'namespace', fieldLabel: 'Build Namespace' },
         { type: 'requiredField', fieldName: 'repo', fieldLabel: 'Repository' },
     ],

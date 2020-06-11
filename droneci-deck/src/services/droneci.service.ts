@@ -12,22 +12,22 @@ export class DroneService {
 
   public static listNamespacesForMaster(master: String) : IPromise<string[]>{
     return API
-      .one('drone-ci')
-      .one('masters')
-      .one(master)
-      .one('namespaces')
-      .get();
+        .one('drone-ci')
+        .one('masters')
+        .one(master)
+        .one('namespaces')
+        .get();
   }
 
   public static listReposForNamespace(master: String, namespace: String) :IPromise<string[]>{
     return API
-      .one('drone-ci')
-      .one('masters')
-      .one(master)
-      .one('namespaces')
-      .one(namespace)
-      .one('repos')
-      .get();
+        .one('drone-ci')
+        .one('masters')
+        .one(master)
+        .one('namespaces')
+        .one(namespace)
+        .one('repos')
+        .get();
   }
 
 }
