@@ -1,0 +1,19 @@
+repositories {
+    mavenCentral()
+    jcenter()
+}
+
+dependencies {
+    testImplementation "org.junit.jupiter:junit-jupiter-api:5.5.2"
+    testImplementation group: 'io.strikt', name: 'strikt-core', version: '0.22.1'
+    testImplementation group: 'dev.minutest', name: 'minutest', version: '1.10.0'
+    testImplementation group: 'io.mockk', name: 'mockk', version: '1.9.3'
+
+    testRuntime "org.junit.jupiter:junit-jupiter-engine:5.4.0"
+    testRuntime "org.junit.platform:junit-platform-launcher:1.4.0"
+    testRuntime "org.junit.platform:junit-platform-commons:1.5.2"
+}
+
+tasks.withType(Test) {
+    useJUnitPlatform()
+}

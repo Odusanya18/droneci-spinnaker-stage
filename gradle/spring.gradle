@@ -1,0 +1,15 @@
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compileOnly (group: 'org.springframework', name: 'spring-context', version: springVersion)
+    compileOnly (group: 'org.springframework', name: 'spring-web', version: springVersion)
+    compileOnly (group: 'org.springframework.security', name: 'spring-security-config', version: springVersion)
+
+    testImplementation ("org.springframework.boot:spring-boot-starter-test:$springBootVersion")
+    testImplementation (group: 'org.springframework.boot', name: 'spring-boot-starter-web', version: springBootVersion)
+    testImplementation (group: 'org.springframework.boot', name: 'spring-boot-starter-security', version: springBootVersion)
+    testImplementation (group: 'org.springframework.security', name: 'spring-security-test', version: springVersion)
+}

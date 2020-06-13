@@ -1,0 +1,8 @@
+apply from: "$rootDir/gradle/kotlin.gradle"
+apply from: "$rootDir/gradle/retrofit.gradle"
+apply from: "$rootDir/gradle/spring.gradle"
+
+dependencies {
+    compileOnly (group: 'com.netflix.spinnaker.kork', name: 'kork-plugins-api', version: korkVersion)
+    compileOnly (group: 'com.netflix.spinnaker.kork', name: 'kork-plugins-spring-api', version: korkVersion)
+}

@@ -1,0 +1,18 @@
+apply from: "$rootDir/gradle/kotlin.gradle"
+apply from: "$rootDir/gradle/retrofit.gradle"
+apply from: "$rootDir/gradle/spinnaker.gradle"
+apply from: "$rootDir/gradle/spring.gradle"
+apply from: "$rootDir/gradle/junit.gradle"
+
+spinnakerPlugin {
+    serviceName = "igor"
+    pluginClass = "com.github.odusanya18.igor.DroneCIPlugin"
+    requires="igor>=0.0.0"
+}
+
+dependencies {
+    implementation(project(":droneci-core"))
+    compileOnly(group: 'org.pf4j', name: 'pf4j', version: pf4jVersion)
+    kapt(group: 'org.pf4j', name: 'pf4j', version: pf4jVersion)
+    compileOnly (group: 'com.netflix.spinnaker.kork', name: 'kork-plugins-spring-api', version: korkVersion)
+}
