@@ -24,7 +24,7 @@ class StartDroneCITask(droneCIProperties: DroneCIProperties) : RetryableTask, Dr
                 .buildService
                 .createBuild(
                         execution.namespace,
-                        execution.repoName,
+                        execution.repo,
                         execution.branch,
                         execution.commit,
                         execution.environment

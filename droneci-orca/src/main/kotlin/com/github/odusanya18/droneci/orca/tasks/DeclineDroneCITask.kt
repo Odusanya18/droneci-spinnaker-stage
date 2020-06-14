@@ -17,7 +17,7 @@ class DeclineDroneCITask(droneCIProperties: DroneCIProperties) : Task, DroneCICl
         val execution = stage.mapTo(DroneCIStageExecution::class.java)
         val declinedBuild = clientForMaster(execution.master)
                 .buildService
-                .declineBuild(execution.owner, execution.repoName, execution.buildNumber)
+                .declineBuild(execution.owner, execution.repo, execution.buildNumber)
                 .execute()
         if (declinedBuild.isSuccessful){
             return taskResult(ExecutionStatus.SUCCEEDED, task("success", execution.buildNumber))
