@@ -2,6 +2,8 @@ import typescript from 'rollup-plugin-typescript2'
 import postcss from 'rollup-plugin-postcss'
 import pkg from './package.json'
 import externalGlobals from 'rollup-plugin-external-globals'
+import nodeResolve from '@rollup/plugin-node-resolve'
+import commonjs from '@rollup/plugin-commonjs'
 
 // NOTE: Base pluginsdk rollup config does not work.
 
@@ -23,13 +25,15 @@ export default {
       },
     ],
     external: [
-      ...Object.keys(pkg.dependencies || {}),
       ...Object.keys(pkg.peerDependencies || {}),
+      ...Object.keys(pkg.dependencies || {}),
     ],
     plugins: [
         typescript({
           typescript: require('typescript'),
         }),
+        nodeResolve(),
+        commonjs(),
         externalGlobals(spinnakerSharedLibraries()),
         postcss()
       ],
