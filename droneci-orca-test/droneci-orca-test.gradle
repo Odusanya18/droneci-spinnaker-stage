@@ -13,6 +13,6 @@ dependencies {
 
 test {
     filter {
-        includeTestsMatching "com.github.odusanya18.droneci.orca.stage.DroneCIStageTckTest"
+        includeTestsMatching "com.github.odusanya18.droneci.orca.DroneCIStageTckTest"
     }
 }

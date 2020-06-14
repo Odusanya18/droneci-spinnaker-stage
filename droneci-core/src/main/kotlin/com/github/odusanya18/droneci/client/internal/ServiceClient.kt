@@ -1,30 +1,25 @@
-package com.github.odusanya18.droneci.gate.client.internal
+package com.github.odusanya18.droneci.client.internal
 
 import com.github.odusanya18.droneci.services.internal.IgorService
-import com.netflix.spinnaker.gate.config.ServiceConfiguration
 import okhttp3.OkHttpClient
+import org.springframework.beans.factory.annotation.Value
+import org.springframework.boot.autoconfigure.condition.ConditionalOnExpression
+import org.springframework.stereotype.Component
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-import java.lang.IllegalStateException
 import kotlin.reflect.KClass
 
-class ServiceClient(private val serviceConfiguration: ServiceConfiguration) {
+@Component
+@ConditionalOnExpression("\${igor.enabled:true}")
+class ServiceClient(@Value("\${igor.base-url}") var igorBaseUrl: String = "") {
     private val converter = GsonConverterFactory.create()
     private val okHttpClient = OkHttpClient()
-    val igorService = createService("igor", IgorService::class)
+    val igorService by lazy { createService(igorBaseUrl, IgorService::class) }
 
-    private fun <S : Any> createService(serviceName: String, serviceClass: KClass<S>, dynamicName :String? = null, forceEnabled: Boolean = false): S {
-        val service = serviceConfiguration.getService(serviceName)
-            ?: throw IllegalArgumentException("Unknown service $serviceName requested of type $serviceClass")
-
-        if (!service.enabled && !forceEnabled) {
-            throw IllegalStateException("Disabled service $serviceName requested of type $serviceClass")
-        }
-        return Retrofit.Builder()
-            .baseUrl(serviceConfiguration.getServiceEndpoint(serviceName, dynamicName).url)
+    private fun <S : Any> createService(baseUrl: String, serviceClass: KClass<S>) = Retrofit.Builder()
+            .baseUrl(baseUrl)
             .client(okHttpClient)
             .addConverterFactory(converter)
             .build()
             .create(serviceClass.java)
-    }
 }

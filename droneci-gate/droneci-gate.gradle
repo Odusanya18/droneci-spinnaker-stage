@@ -1,5 +1,4 @@
 apply from: "$rootDir/gradle/kotlin.gradle"
-apply from: "$rootDir/gradle/groovy.gradle"
 apply from: "$rootDir/gradle/spinnaker.gradle"
 apply from: "$rootDir/gradle/retrofit.gradle"
 apply from: "$rootDir/gradle/spring.gradle"
@@ -8,14 +7,11 @@ apply from: "$rootDir/gradle/junit.gradle"
 spinnakerPlugin {
     serviceName = "gate"
     pluginClass = "com.github.odusanya18.droneci.gate.DroneCIPlugin"
-    requires="gate>=0.0.1"
+    requires="gate>=0.0.0"
 }
 
 dependencies {
-    compileOnly (group: 'com.netflix.spinnaker.gate', name: 'gate-core', version: '6.44.0')
     compileOnly(group: 'org.pf4j', name: 'pf4j', version: pf4jVersion)
-    kapt(group: 'org.pf4j', name: 'pf4j', version: pf4jVersion)
-    compileOnly (group: 'com.netflix.spinnaker.kork', name: 'kork-plugins-api', version: korkVersion)
     compileOnly (group: 'com.netflix.spinnaker.kork', name: 'kork-plugins-spring-api', version: korkVersion)
     implementation(project(":droneci-core"))
 }

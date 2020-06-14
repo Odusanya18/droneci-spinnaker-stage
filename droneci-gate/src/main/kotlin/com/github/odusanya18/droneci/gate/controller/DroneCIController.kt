@@ -1,7 +1,6 @@
 package com.github.odusanya18.droneci.gate.controller
 
-import com.github.odusanya18.droneci.gate.client.internal.ServiceClient
-import com.netflix.spinnaker.gate.config.ServiceConfiguration
+import com.github.odusanya18.droneci.client.internal.ServiceClient
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PathVariable
 import org.springframework.web.bind.annotation.RequestMapping
@@ -9,9 +8,7 @@ import org.springframework.web.bind.annotation.RestController
 
 @RestController
 @RequestMapping("/drone-ci/masters")
-class DroneCIController(serviceConfiguration: ServiceConfiguration) {
-    private val serviceClient = ServiceClient(serviceConfiguration)
-
+class DroneCIController(private val serviceClient: ServiceClient) {
     @GetMapping
     private fun masters() = serviceClient
         .igorService
