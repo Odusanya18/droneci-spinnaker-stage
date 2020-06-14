@@ -5,4 +5,5 @@ enum class BuildStatus {
     FAILED,
     PENDING,
     RUNNING
+    ERROR
 }
