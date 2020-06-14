@@ -10,11 +10,11 @@ import retrofit2.converter.gson.GsonConverterFactory
 import kotlin.reflect.KClass
 
 @Component
-@ConditionalOnExpression("\${igor.enabled:true}")
-class ServiceClient(@Value("\${igor.base-url}") var igorBaseUrl: String = "") {
+@ConditionalOnExpression("\${services.igor.enabled:true}")
+class ServiceClient(@Value("\${services.igor.baseUrl}") private val igorBaseUrl: String) {
     private val converter = GsonConverterFactory.create()
     private val okHttpClient = OkHttpClient()
-    val igorService by lazy { createService(igorBaseUrl, IgorService::class) }
+    val igorService = createService(igorBaseUrl, IgorService::class)
 
     private fun <S : Any> createService(baseUrl: String, serviceClass: KClass<S>) = Retrofit.Builder()
             .baseUrl(baseUrl)
