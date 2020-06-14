@@ -7,7 +7,10 @@ import org.springframework.http.HttpStatus
 import org.springframework.web.bind.annotation.ResponseStatus
 
 @ExtensionConfiguration("odusanya18.drone-ci")
-@ConfigurationProperties("spinnaker.extensibility.plugins.odusanya18.drone-ci")
+@ConfigurationProperties(
+    "spinnaker.extensibility.plugins.odusanya18.drone-ci.extensions" +
+            "odusanya18.droneCI.config"
+)
 open class DroneCIProperties {
     private var masters: List<Master> = emptyList()
     var timeout = 300L
