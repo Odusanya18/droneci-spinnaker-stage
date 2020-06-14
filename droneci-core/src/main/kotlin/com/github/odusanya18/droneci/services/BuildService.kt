@@ -19,7 +19,7 @@ interface BuildService {
         @Path("name") name: String?,
         @Query("branch") branch: String? = null,
         @Query("commit") commit: String? = null,
-        @QueryMap environment: Map<String, String>? = null
+        @QueryMap environment: Map<String, String>
     ) : Call<Build>
 
     @POST("/api/repos/{owner}/{repo}/builds/{buildNumber}/promote")
@@ -28,7 +28,7 @@ interface BuildService {
         @Path("repo") repo: String,
         @Path("buildNumber") buildNumber: String,
         @Query("target") target: String,
-        @QueryMap environment: Map<String, String>? = null
+        @QueryMap environment: Map<String, String>
     ) : Call<Build>
 
     @DELETE("/api/repos/{owner}/{repo}/builds/{buildNumber}")

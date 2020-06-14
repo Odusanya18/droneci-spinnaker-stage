@@ -27,7 +27,7 @@ class StartDroneCITask(droneCIProperties: DroneCIProperties) : RetryableTask, Dr
                         execution.repo,
                         execution.branch,
                         execution.commit,
-                        execution.environment
+                    execution.environment ?: mutableMapOf()
                 )
                 .execute()
         if (queuedBuild.isSuccessful){
