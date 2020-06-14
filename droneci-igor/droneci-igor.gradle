@@ -1,5 +1,4 @@
 apply from: "$rootDir/gradle/kotlin.gradle"
-apply from: "$rootDir/gradle/retrofit.gradle"
 apply from: "$rootDir/gradle/spinnaker.gradle"
 apply from: "$rootDir/gradle/spring.gradle"
 apply from: "$rootDir/gradle/junit.gradle"
@@ -14,4 +13,6 @@ dependencies {
     implementation(project(":droneci-core"))
     compileOnly(group: 'org.pf4j', name: 'pf4j', version: pf4jVersion)
     compileOnly (group: 'com.netflix.spinnaker.kork', name: 'kork-plugins-spring-api', version: korkVersion)
+    compileOnly (group: 'com.squareup.retrofit2', name: 'retrofit', version: '2.5.0')
+    compileOnly (group: 'com.squareup.retrofit2', name: 'converter-gson', version: '2.5.0')
 }

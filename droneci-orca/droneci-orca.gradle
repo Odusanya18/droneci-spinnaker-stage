@@ -1,6 +1,5 @@
 apply from: "$rootDir/gradle/kotlin.gradle"
 apply from: "$rootDir/gradle/spinnaker.gradle"
-apply from: "$rootDir/gradle/retrofit.gradle"
 apply from: "$rootDir/gradle/junit.gradle"
 
 spinnakerPlugin {
@@ -14,6 +13,8 @@ dependencies {
     compileOnly(group: 'org.pf4j', name: 'pf4j', version: pf4jVersion)
     kapt(group: 'org.pf4j', name: 'pf4j', version: pf4jVersion)
     compileOnly (group: 'com.netflix.spinnaker.orca', name: 'orca-api', version: orcaVersion)
+    compileOnly (group: 'com.squareup.retrofit2', name: 'retrofit', version: '2.5.0')
+    compileOnly (group: 'com.squareup.retrofit2', name: 'converter-gson', version: '2.5.0')
 
     testImplementation (group: 'com.netflix.spinnaker.orca', name: 'orca-api', version: orcaVersion)
 }
