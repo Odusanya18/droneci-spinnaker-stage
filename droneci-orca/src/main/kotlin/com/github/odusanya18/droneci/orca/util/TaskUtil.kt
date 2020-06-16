@@ -8,9 +8,10 @@ object TaskUtil {
         "action" to status,
         "number" to buildNumber.toString())
     fun taskResult(executionStatus: ExecutionStatus, buildInfo: Any): TaskResult {
+        @Suppress("UNCHECKED_CAST")
         return TaskResult
             .builder(executionStatus)
-            .context(mapOf("buildInfo" to buildInfo))
+            .context(buildInfo as MutableMap<out String, *>?)
             .build()
     }
 }

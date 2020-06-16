@@ -34,7 +34,6 @@ class StartDroneCITask(droneCIProperties: DroneCIProperties) : RetryableTask, Dr
             queuedBuild
                     .body()
                     ?.let {
-                        execution.buildNumber = it.number
                 return taskResult(ExecutionStatus.SUCCEEDED, it)
             }
         }
