@@ -33,10 +33,9 @@ class MonitorDroneCITask(droneCIProperties: DroneCIProperties) : RetryableTask, 
                     ?.let {
                         return when (BuildStatus.valueOf(it.status)) {
                             BuildStatus.SUCCESS -> taskResult(ExecutionStatus.SUCCEEDED, it)
-                            BuildStatus.FAILED -> taskResult(ExecutionStatus.TERMINAL, it)
+                            BuildStatus.FAILED, BuildStatus.ERROR -> taskResult(ExecutionStatus.TERMINAL, it)
                             BuildStatus.PENDING -> taskResult(ExecutionStatus.NOT_STARTED, it)
                             BuildStatus.RUNNING -> taskResult(ExecutionStatus.RUNNING, it)
-                            BuildStatus.ERROR -> taskResult(ExecutionStatus.TERMINAL, it)
                         }
                     }
         }
