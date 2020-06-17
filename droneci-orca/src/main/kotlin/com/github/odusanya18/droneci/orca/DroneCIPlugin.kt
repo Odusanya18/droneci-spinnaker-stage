@@ -9,7 +9,6 @@ import com.netflix.spinnaker.orca.api.pipeline.models.StageExecution
 import org.pf4j.Extension
 import org.pf4j.Plugin
 import org.pf4j.PluginWrapper
-import java.util.*
 
 class DroneCIPlugin(wrapper: PluginWrapper) : Plugin(wrapper)
 
