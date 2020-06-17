@@ -10,11 +10,8 @@ import com.netflix.spinnaker.orca.api.pipeline.Task
 import com.netflix.spinnaker.orca.api.pipeline.TaskResult
 import com.netflix.spinnaker.orca.api.pipeline.models.ExecutionStatus
 import com.netflix.spinnaker.orca.api.pipeline.models.StageExecution
-import org.pf4j.Extension
 
-@Extension
 class StopDroneCITask(droneCIProperties: DroneCIProperties) : Task, DroneCIClientAware(droneCIProperties) {
-
     override fun execute(stage: StageExecution): TaskResult {
         val execution = stage.mapTo(DroneCIStageExecution::class.java)
         val client = clientForMaster(execution.master)
