@@ -3,6 +3,7 @@ package com.github.odusanya18.droneci.orca.tasks
 import com.github.odusanya18.droneci.client.DroneCIClientAware
 import com.github.odusanya18.droneci.config.DroneCIProperties
 import com.github.odusanya18.droneci.orca.models.execution.DroneCIStageExecution
+import com.github.odusanya18.droneci.orca.util.TaskUtil.buildNumber
 import com.github.odusanya18.droneci.orca.util.TaskUtil.task
 import com.github.odusanya18.droneci.orca.util.TaskUtil.taskResult
 import com.netflix.spinnaker.orca.api.pipeline.Task
@@ -17,7 +18,7 @@ class DeclineDroneCITask(droneCIProperties: DroneCIProperties) : Task, DroneCICl
         val execution = stage.mapTo(DroneCIStageExecution::class.java)
         val declinedBuild = clientForMaster(execution.master)
                 .buildService
-                .declineBuild(execution.namespace, execution.repo, execution.buildNumber)
+                .declineBuild(execution.namespace, execution.repo, buildNumber(stage.context))
                 .execute()
         if (declinedBuild.isSuccessful){
             return taskResult(ExecutionStatus.SUCCEEDED, task("success", execution.buildNumber))

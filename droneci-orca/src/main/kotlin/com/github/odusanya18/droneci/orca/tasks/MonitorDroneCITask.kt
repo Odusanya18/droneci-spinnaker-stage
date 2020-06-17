@@ -4,6 +4,7 @@ import com.github.odusanya18.droneci.client.DroneCIClientAware
 import com.github.odusanya18.droneci.config.DroneCIProperties
 import com.github.odusanya18.droneci.orca.models.execution.BuildStatus
 import com.github.odusanya18.droneci.orca.models.execution.DroneCIStageExecution
+import com.github.odusanya18.droneci.orca.util.TaskUtil.buildNumber
 import com.github.odusanya18.droneci.orca.util.TaskUtil.task
 import com.github.odusanya18.droneci.orca.util.TaskUtil.taskResult
 import com.netflix.spinnaker.orca.api.pipeline.RetryableTask
@@ -25,7 +26,7 @@ class MonitorDroneCITask(droneCIProperties: DroneCIProperties) : RetryableTask, 
         val execution = stage.mapTo(DroneCIStageExecution::class.java)
         val infoBuild = clientForMaster(execution.master)
                 .buildService
-                .infoBuild(execution.namespace, execution.repo, execution.buildNumber)
+                .infoBuild(execution.namespace, execution.repo, buildNumber(stage.context))
                 .execute()
         if (infoBuild.isSuccessful){
             infoBuild

@@ -3,6 +3,7 @@ package com.github.odusanya18.droneci.orca.tasks
 import com.github.odusanya18.droneci.client.DroneCIClientAware
 import com.github.odusanya18.droneci.config.DroneCIProperties
 import com.github.odusanya18.droneci.orca.models.execution.DroneCIStageExecution
+import com.github.odusanya18.droneci.orca.util.TaskUtil.buildNumber
 import com.github.odusanya18.droneci.orca.util.TaskUtil.task
 import com.github.odusanya18.droneci.orca.util.TaskUtil.taskResult
 import com.netflix.spinnaker.orca.api.pipeline.Task
@@ -20,7 +21,7 @@ class StopDroneCITask(droneCIProperties: DroneCIProperties) : Task, DroneCIClien
 
         val cancelledBuild = client
                 .buildService
-                .stopBuild(execution.namespace, execution.buildNumber)
+                .stopBuild(execution.namespace, execution.repo, buildNumber(stage.context))
                 .execute()
         if (cancelledBuild.isSuccessful){
             return taskResult(ExecutionStatus.SUCCEEDED, task("cancelled", execution.buildNumber))

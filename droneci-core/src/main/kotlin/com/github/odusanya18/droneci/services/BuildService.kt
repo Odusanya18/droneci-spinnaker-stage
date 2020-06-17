@@ -34,6 +34,7 @@ interface BuildService {
     @DELETE("/api/repos/{owner}/{repo}/builds/{buildNumber}")
     fun stopBuild(
         @Path("owner") owner: String?,
+        @Path("repo") repo: String?,
         @Path("buildNumber") buildNumber: Long?
     ) : Call<Void>
 
