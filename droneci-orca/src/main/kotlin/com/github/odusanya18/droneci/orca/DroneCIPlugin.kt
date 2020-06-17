@@ -1,5 +1,6 @@
 package com.github.odusanya18.droneci.orca
 
+import com.github.odusanya18.droneci.config.DroneCIProperties
 import com.github.odusanya18.droneci.orca.tasks.*
 import com.netflix.spinnaker.orca.api.pipeline.CancellableStage
 import com.netflix.spinnaker.orca.api.pipeline.CancellableStage.Result
@@ -13,7 +14,9 @@ import org.pf4j.PluginWrapper
 class DroneCIPlugin(wrapper: PluginWrapper) : Plugin(wrapper)
 
 @Extension
-class DroneCIStage(private val stopDroneCITask: StopDroneCITask) : StageDefinitionBuilder, CancellableStage {
+class DroneCIStage(droneCIProperties: DroneCIProperties) : StageDefinitionBuilder, CancellableStage {
+    private val stopDroneCITask = StopDroneCITask(droneCIProperties)
+
     override fun taskGraph(stage: StageExecution, builder: Builder) {
         builder
             .withTask("startDroneCITask", StartDroneCITask::class.java)
