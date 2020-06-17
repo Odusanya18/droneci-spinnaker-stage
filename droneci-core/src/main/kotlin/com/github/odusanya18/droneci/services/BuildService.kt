@@ -10,7 +10,7 @@ interface BuildService {
     fun infoBuild(
         @Path("owner") owner: String?,
         @Path("repo") repo: String?,
-        @Path("buildNumber") buildNumber: Long?
+        @Path("buildNumber") buildNumber: Int
     ) : Call<Build>
 
     @POST("/api/repos/{namespace}/{name}/builds")
@@ -35,20 +35,20 @@ interface BuildService {
     fun stopBuild(
         @Path("owner") owner: String?,
         @Path("repo") repo: String?,
-        @Path("buildNumber") buildNumber: Long?
+        @Path("buildNumber") buildNumber: Int
     ) : Call<Void>
 
     @POST("/api/repos/{owner}/{repo}/builds/{buildNumber}/approve")
     fun approveBuild(
         @Path("owner") owner: String?,
         @Path("repo") repo: String?,
-        @Path("buildNumber") buildNumber: Long?
+        @Path("buildNumber") buildNumber: Int
     ) : Call<Void>
 
     @POST("/api/repos/{owner}/{repo}/builds/{buildNumber}/decline")
     fun declineBuild(
         @Path("owner") owner: String?,
         @Path("repo") repo: String?,
-        @Path("buildNumber") buildNumber: Long?
+        @Path("buildNumber") buildNumber: Int
     ) : Call<Void>
 }

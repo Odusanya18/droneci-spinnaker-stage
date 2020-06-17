@@ -15,8 +15,8 @@ object TaskUtil {
             .build()
     }
 
-    fun buildNumber(ctx: Map<String, Any>): Long {
+    fun buildNumber(ctx: Map<String, Any>): Int {
         val buildInfo = ctx["buildInfo"] as Map<*, *>
-        return buildInfo["number"] as Long
+        return buildInfo["number"] as Int
     }
 }
