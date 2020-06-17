@@ -13,5 +13,6 @@ spinnakerPlugin {
 dependencies {
     compileOnly(group: 'org.pf4j', name: 'pf4j', version: pf4jVersion)
     compileOnly (group: 'com.netflix.spinnaker.kork', name: 'kork-plugins-spring-api', version: korkVersion)
+    compileOnly (group: 'io.swagger', name: 'swagger-annotations', version: '1.5.20')
     implementation(project(":droneci-core"))
 }
