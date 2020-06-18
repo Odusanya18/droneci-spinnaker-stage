@@ -1,7 +1,9 @@
 package com.github.odusanya18.droneci.orca.util
 
+import com.google.gson.Gson
 import com.netflix.spinnaker.orca.api.pipeline.TaskResult
 import com.netflix.spinnaker.orca.api.pipeline.models.ExecutionStatus
+import org.slf4j.LoggerFactory
 
 object TaskUtil {
     fun task(status: String, buildNumber: Long?) = mapOf(
@@ -16,6 +18,8 @@ object TaskUtil {
     }
 
     fun buildNumber(ctx: Map<String, Any>): Int {
+        val logger = LoggerFactory.getLogger(this.javaClass)
+        logger.info(Gson().toJson(ctx))
         val buildInfo = ctx["buildInfo"] as Map<*, *>
         return buildInfo["number"] as Int
     }

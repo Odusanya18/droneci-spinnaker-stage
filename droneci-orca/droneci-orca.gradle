@@ -13,6 +13,7 @@ dependencies {
     implementation(project(":droneci-core"))
     compileOnly(group: 'org.pf4j', name: 'pf4j', version: pf4jVersion)
     kapt(group: 'org.pf4j', name: 'pf4j', version: pf4jVersion)
+    compileOnly(group: 'ch.qos.logback', name: 'logback-classic', version: '1.2.3')
     compileOnly (group: 'com.netflix.spinnaker.orca', name: 'orca-api', version: orcaVersion)
 
     testImplementation (group: 'com.netflix.spinnaker.orca', name: 'orca-api', version: orcaVersion)
