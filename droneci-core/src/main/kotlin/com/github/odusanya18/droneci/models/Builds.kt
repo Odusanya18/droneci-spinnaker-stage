@@ -107,7 +107,7 @@ data class Build (
     /**
      * The status of this build
      */
-    var status: String,
+    var status: String = "",
 
     /**
      * The target branch for this commit, useful in PRs
