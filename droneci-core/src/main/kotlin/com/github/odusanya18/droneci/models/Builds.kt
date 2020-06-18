@@ -16,12 +16,12 @@ data class Build (
     /**
      * The avatar for the commit author
      */
-    val authorAvatar: String,
+    val authorAvatar: String?,
 
     /**
      * The commit author email
      */
-    val authorEmail: String,
+    val authorEmail: String?,
 
     /**
      * The Commit author username
