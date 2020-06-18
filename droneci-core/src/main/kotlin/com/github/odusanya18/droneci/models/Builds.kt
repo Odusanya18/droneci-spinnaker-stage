@@ -6,12 +6,12 @@ package com.github.odusanya18.droneci.models
  * A representation of a Drone CI Build
  */
 data class Build (
-    val action: String,
+    val action: String?,
 
     /**
      * The hash for the previous commit before this build commit
      */
-    val after: String,
+    val after: String?,
 
     /**
      * The avatar for the commit author
@@ -26,84 +26,84 @@ data class Build (
     /**
      * The Commit author username
      */
-    val authorLogin: String,
+    val authorLogin: String?,
 
     /**
      * The commit author name in full
      */
-    val authorName: String,
+    val authorName: String?,
 
     /**
      * The hash for the next commit after this build commit
      */
-    val before: String,
+    val before: String?,
 
     /**
      * The time the build was created in time since epoch
      */
-    val created: Long,
+    val created: Long?,
 
     /**
      * The event that triggered this build
      */
-    val event: String,
+    val event: String?,
 
     /**
      * The time the build was finished in time since epoch
      */
-    val finished: Long,
+    val finished: Long?,
 
     /**
      * This is a simple signed long representation of the build id
      */
-    val id: Long,
+    val id: Long?,
 
     /**
      * The scm link to the commit diff for this build
      */
-    val link: String,
+    val link: String?,
 
     /**
      * The message on this build's commit
      */
-    val message: String,
+    val message: String?,
 
     /**
      * The number of this build, unsigned long
      */
-    val number: Long,
+    val number: Long?,
 
     /**
      * The git ref for this build commit
      */
-    val ref: String,
+    val ref: String?,
 
     /**
      * This is a simple signed long representation of the build repo
      */
-    val repoID: Long,
+    val repoID: Long?,
 
     /**
      * The username for the PR sender
      */
-    val sender: String,
+    val sender: String?,
 
     /**
      * The source branch for this commit, useful in PRs
      */
-    val source: String,
+    val source: String?,
 
     /**
      * The source repo for this commit, useful in PRs
      */
-    val sourceRepo: String,
+    val sourceRepo: String?,
 
     val stages: List<Stage>? = null,
 
     /**
      * The build start time in time since epoch
      */
-    val started: Long,
+    val started: Long?,
 
     /**
      * The status of this build
@@ -113,27 +113,27 @@ data class Build (
     /**
      * The target branch for this commit, useful in PRs
      */
-    val target: String,
+    val target: String?,
 
     /**
      * The timestamp for this build
      */
-    val timestamp: Long,
+    val timestamp: Long?,
 
     /**
      * What triggered this build
      */
-    val trigger: String,
+    val trigger: String?,
 
     /**
      * The time the build was updated in time since epoch
      */
-    val updated: Long,
+    val updated: Long?,
 
     /**
      * The Version id for this build
      */
-    val version: Long
+    val version: Long?
 )
 
 /**
