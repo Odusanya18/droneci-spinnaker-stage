@@ -29,12 +29,3 @@ class DroneCIStage(droneCIProperties: DroneCIProperties) : StageDefinitionBuilde
         return Result(stage, stage.context)
     }
 }
-
-@Extension
-class DroneCIApprovalStage : StageDefinitionBuilder {
-    override fun taskGraph(stage: StageExecution, builder: Builder) {
-        builder
-            .withTask("approveDroneCITask", ApproveDroneCITask::class.java)
-            .withTask("declineDroneCITask", DeclineDroneCITask::class.java)
-    }
-}
