@@ -7,7 +7,6 @@ import com.github.odusanya18.droneci.orca.models.execution.DroneCIStageExecution
 import com.github.odusanya18.droneci.orca.util.TaskUtil.buildNumber
 import com.github.odusanya18.droneci.orca.util.TaskUtil.task
 import com.github.odusanya18.droneci.orca.util.TaskUtil.taskResult
-import com.google.gson.Gson
 import com.netflix.spinnaker.orca.api.pipeline.RetryableTask
 import com.netflix.spinnaker.orca.api.pipeline.TaskResult
 import com.netflix.spinnaker.orca.api.pipeline.models.ExecutionStatus
@@ -24,12 +23,10 @@ class MonitorDroneCITask(droneCIProperties: DroneCIProperties) : RetryableTask, 
     override fun getBackoffPeriod() = TimeUnit.SECONDS.toMillis(droneCIProperties.backOffPeriod)
 
     override fun execute(stage: StageExecution): TaskResult {
-        println(Gson().toJson(stage.context))
-        println(Gson().toJson(stage.execution.context))
         val execution = stage.mapTo(DroneCIStageExecution::class.java)
         val infoBuild = clientForMaster(execution.master)
                 .buildService
-                .infoBuild(execution.namespace, execution.repo, buildNumber(stage.execution.context))
+                .infoBuild(execution.namespace, execution.repo, buildNumber(stage.context))
                 .execute()
         if (infoBuild.isSuccessful){
             infoBuild

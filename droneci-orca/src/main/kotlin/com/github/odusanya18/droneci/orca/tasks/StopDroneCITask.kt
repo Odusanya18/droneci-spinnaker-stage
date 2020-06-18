@@ -18,7 +18,7 @@ class StopDroneCITask(droneCIProperties: DroneCIProperties) : Task, DroneCIClien
 
         val cancelledBuild = client
                 .buildService
-                .stopBuild(execution.namespace, execution.repo, buildNumber(stage.execution.context))
+                .stopBuild(execution.namespace, execution.repo, buildNumber(stage.context))
                 .execute()
         if (cancelledBuild.isSuccessful){
             return taskResult(ExecutionStatus.SUCCEEDED, task("cancelled", execution.buildNumber))
