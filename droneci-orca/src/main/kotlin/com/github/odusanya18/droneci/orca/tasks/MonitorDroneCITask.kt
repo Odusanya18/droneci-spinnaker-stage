@@ -3,8 +3,7 @@ package com.github.odusanya18.droneci.orca.tasks
 import com.github.odusanya18.droneci.client.DroneCIClientAware
 import com.github.odusanya18.droneci.config.DroneCIProperties
 import com.github.odusanya18.droneci.orca.models.execution.BuildStatus
-import com.github.odusanya18.droneci.orca.models.execution.DroneCIStageExecution
-import com.github.odusanya18.droneci.orca.util.TaskUtil.buildNumber
+import com.github.odusanya18.droneci.orca.models.execution.DroneCIStageDefinition
 import com.github.odusanya18.droneci.orca.util.TaskUtil.task
 import com.github.odusanya18.droneci.orca.util.TaskUtil.taskResult
 import com.netflix.spinnaker.orca.api.pipeline.RetryableTask
@@ -23,10 +22,10 @@ class MonitorDroneCITask(droneCIProperties: DroneCIProperties) : RetryableTask, 
     override fun getBackoffPeriod() = TimeUnit.SECONDS.toMillis(droneCIProperties.backOffPeriod)
 
     override fun execute(stage: StageExecution): TaskResult {
-        val execution = stage.mapTo(DroneCIStageExecution::class.java)
+        val execution = stage.mapTo(DroneCIStageDefinition::class.java)
         val infoBuild = clientForMaster(execution.master)
                 .buildService
-                .infoBuild(execution.namespace, execution.repo, buildNumber(stage.context))
+                .infoBuild(execution.namespace, execution.repo, execution.buildInfo?.number)
                 .execute()
         if (infoBuild.isSuccessful){
             infoBuild
@@ -40,7 +39,7 @@ class MonitorDroneCITask(droneCIProperties: DroneCIProperties) : RetryableTask, 
                         }
                     }
         }
-        return taskResult(ExecutionStatus.TERMINAL, task("failed", execution.buildNumber))
+        return taskResult(ExecutionStatus.TERMINAL, task("failed", execution.buildInfo?.number))
     }
 
 }
