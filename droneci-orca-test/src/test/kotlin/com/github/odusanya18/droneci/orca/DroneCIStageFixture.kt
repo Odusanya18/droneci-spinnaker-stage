@@ -29,7 +29,7 @@ class OrcaPluginsFixture : PluginsTckFixture, OrcaTestService() {
     final override val versionNotSupportedPlugin: PluginJar
 
     override val extensionClassNames: MutableList<String> = mutableListOf(
-        DroneCIStage::class.java.name, DroneCIApprovalStage::class.java.name
+        DroneCIStage::class.java.name
     )
 
     final override fun buildPlugin(pluginId: String, systemVersionRequirement: String): PluginJar {

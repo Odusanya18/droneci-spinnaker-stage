@@ -27,14 +27,6 @@ class DroneCIStageTckTest : PluginsTck<OrcaPluginsFixture>() {
                     that(stageDefinitionBuilder.type).isEqualTo("droneCI")
                 }
             }
-
-            test("DroneCIApprovalStage extension is resolved to the correct type") {
-                val stageDefinitionBuilder = stageResolver.getStageDefinitionBuilder(
-                    DroneCIApprovalStage::class.java.simpleName, "droneCIApproval")
-                expect {
-                    that(stageDefinitionBuilder.type).isEqualTo("droneCIApproval")
-                }
-            }
         }
     }
 }
