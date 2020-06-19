@@ -23,9 +23,7 @@ class MonitorDroneCITask(droneCIProperties: DroneCIProperties) : RetryableTask, 
     override fun getBackoffPeriod() = TimeUnit.SECONDS.toMillis(droneCIProperties.backOffPeriod)
 
     override fun execute(stage: StageExecution): TaskResult {
-        println(Gson().toJson(stage.context))
         val execution = stage.mapTo(DroneCIStageDefinition::class.java)
-        println(Gson().toJson(execution.buildInfo))
         val infoBuild = clientForMaster(execution.master)
                 .buildService
                 .infoBuild(execution.namespace, execution.repo, execution.buildInfo?.number)
