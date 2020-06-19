@@ -26,7 +26,7 @@ class MonitorDroneCITask(droneCIProperties: DroneCIProperties) : RetryableTask, 
         val execution = stage.mapTo(DroneCIStageDefinition::class.java)
         val infoBuild = clientForMaster(execution.master)
                 .buildService
-                .infoBuild(execution.namespace, execution.repo, execution.buildInfo?.number)
+                .infoBuild(execution.namespace, execution.repo, execution.buildInfo!!.number)
                 .execute()
         if (infoBuild.isSuccessful){
             infoBuild
@@ -39,7 +39,7 @@ class MonitorDroneCITask(droneCIProperties: DroneCIProperties) : RetryableTask, 
                         }
                     }
         }
-        return taskResult(ExecutionStatus.TERMINAL, task("failed", execution.buildInfo?.number))
+        return taskResult(ExecutionStatus.TERMINAL, task("failed", execution.buildInfo.number))
     }
 
 }
