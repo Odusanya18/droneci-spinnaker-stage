@@ -6,7 +6,7 @@ public class Build {
     private long id;
     private long repoId;
     private String trigger;
-    private long number;
+    private int number;
     private String status;
     private String event;
     private String action;
@@ -40,8 +40,8 @@ public class Build {
     public String getTrigger() { return trigger; }
     public void setTrigger(String value) { this.trigger = value; }
 
-    public long getNumber() { return number; }
-    public void setNumber(long value) { this.number = value; }
+    public int getNumber() { return number; }
+    public void setNumber(int value) { this.number = value; }
 
     public String getStatus() { return status; }
     public void setStatus(String value) { this.status = value; }
