@@ -6,11 +6,11 @@ import retrofit2.http.*
 
 
 interface BuildService {
-    @GET("/api/repos/{owner}/{repo}/builds/{buildNumber}")
+    @GET("/api/repos/{namespace}/{repo}/builds/{build}")
     fun infoBuild(
-        @Path("owner") owner: String,
+        @Path("namespace") namespace: String,
         @Path("repo") repo: String,
-        @Path("buildNumber") buildNumber: Int
+        @Path("build") build: Int
     ) : Call<Build>
 
     @POST("/api/repos/{namespace}/{name}/builds")
@@ -22,33 +22,33 @@ interface BuildService {
         @QueryMap environment: Map<String, String>
     ) : Call<Build>
 
-    @POST("/api/repos/{owner}/{repo}/builds/{buildNumber}/promote")
+    @POST("/api/repos/{namespace}/{repo}/builds/{build}/promote")
     fun promoteBuild(
-        @Path("owner") owner: String,
+        @Path("namespace") namespace: String,
         @Path("repo") repo: String,
-        @Path("buildNumber") buildNumber: String,
+        @Path("build") build: String,
         @Query("target") target: String,
         @QueryMap environment: Map<String, String>
     ) : Call<Build>
 
-    @DELETE("/api/repos/{owner}/{repo}/builds/{buildNumber}")
+    @DELETE("/api/repos/{namespace}/{repo}/builds/{build}")
     fun stopBuild(
-        @Path("owner") owner: String,
+        @Path("namespace") namespace: String,
         @Path("repo") repo: String,
-        @Path("buildNumber") buildNumber: Int
+        @Path("build") build: Int
     ) : Call<Void>
 
-    @POST("/api/repos/{owner}/{repo}/builds/{buildNumber}/approve")
+    @POST("/api/repos/{namespace}/{repo}/builds/{build}/approve")
     fun approveBuild(
-        @Path("owner") owner: String,
+        @Path("namespace") namespace: String,
         @Path("repo") repo: String,
-        @Path("buildNumber") buildNumber: Long
+        @Path("build") build: Long
     ) : Call<Void>
 
-    @POST("/api/repos/{owner}/{repo}/builds/{buildNumber}/decline")
+    @POST("/api/repos/{namespace}/{repo}/builds/{build}/decline")
     fun declineBuild(
-        @Path("owner") owner: String,
+        @Path("namespace") namespace: String,
         @Path("repo") repo: String,
-        @Path("buildNumber") buildNumber: Long
+        @Path("build") build: Long
     ) : Call<Void>
 }
