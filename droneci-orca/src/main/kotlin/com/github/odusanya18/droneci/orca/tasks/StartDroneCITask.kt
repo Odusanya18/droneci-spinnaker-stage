@@ -32,6 +32,6 @@ class StartDroneCITask(droneCIProperties: DroneCIProperties) : Task, DroneCIClie
                 return taskResult(ExecutionStatus.SUCCEEDED, it)
             }
         }
-        return taskResult(ExecutionStatus.TERMINAL, task("failed", execution.buildInfo?.number))
+        return taskResult(ExecutionStatus.TERMINAL, task("failed", execution.buildInfo?.number ?: 0))
     }
 }

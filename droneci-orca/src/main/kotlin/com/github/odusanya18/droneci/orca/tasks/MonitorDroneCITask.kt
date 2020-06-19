@@ -6,7 +6,6 @@ import com.github.odusanya18.droneci.orca.models.execution.BuildStatus
 import com.github.odusanya18.droneci.orca.models.execution.DroneCIStageDefinition
 import com.github.odusanya18.droneci.orca.util.TaskUtil.task
 import com.github.odusanya18.droneci.orca.util.TaskUtil.taskResult
-import com.google.gson.Gson
 import com.netflix.spinnaker.orca.api.pipeline.RetryableTask
 import com.netflix.spinnaker.orca.api.pipeline.TaskResult
 import com.netflix.spinnaker.orca.api.pipeline.models.ExecutionStatus

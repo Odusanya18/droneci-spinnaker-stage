@@ -4,7 +4,7 @@ import com.netflix.spinnaker.orca.api.pipeline.TaskResult
 import com.netflix.spinnaker.orca.api.pipeline.models.ExecutionStatus
 
 object TaskUtil {
-    fun task(status: String, buildNumber: Long?) = mapOf(
+    fun task(status: String, buildNumber: Int) = mapOf(
         "action" to status,
         "number" to buildNumber.toString())
 
