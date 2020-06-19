@@ -37,8 +37,7 @@ class MonitorDroneCITask(droneCIProperties: DroneCIProperties) : RetryableTask, 
                         return when (BuildStatus.valueOf(it.status)) {
                             BuildStatus.success -> taskResult(ExecutionStatus.SUCCEEDED, it)
                             BuildStatus.failed, BuildStatus.error -> taskResult(ExecutionStatus.TERMINAL, it)
-                            BuildStatus.pending -> taskResult(ExecutionStatus.NOT_STARTED, it)
-                            BuildStatus.running -> taskResult(ExecutionStatus.RUNNING, it)
+                            BuildStatus.pending, BuildStatus.running -> taskResult(ExecutionStatus.RUNNING, it)
                         }
                     }
         }
