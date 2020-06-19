@@ -8,15 +8,15 @@ import retrofit2.http.*
 interface BuildService {
     @GET("/api/repos/{owner}/{repo}/builds/{buildNumber}")
     fun infoBuild(
-        @Path("owner") owner: String?,
-        @Path("repo") repo: String?,
-        @Path("buildNumber") buildNumber: Long?
+        @Path("owner") owner: String,
+        @Path("repo") repo: String,
+        @Path("buildNumber") buildNumber: Long
     ) : Call<Build>
 
     @POST("/api/repos/{namespace}/{name}/builds")
     fun createBuild(
-        @Path("namespace") namespace: String?,
-        @Path("name") name: String?,
+        @Path("namespace") namespace: String,
+        @Path("name") name: String,
         @Query("branch") branch: String? = null,
         @Query("commit") commit: String? = null,
         @QueryMap environment: Map<String, String>
@@ -33,9 +33,9 @@ interface BuildService {
 
     @DELETE("/api/repos/{owner}/{repo}/builds/{buildNumber}")
     fun stopBuild(
-        @Path("owner") owner: String?,
-        @Path("repo") repo: String?,
-        @Path("buildNumber") buildNumber: Long?
+        @Path("owner") owner: String,
+        @Path("repo") repo: String,
+        @Path("buildNumber") buildNumber: Long
     ) : Call<Void>
 
     @POST("/api/repos/{owner}/{repo}/builds/{buildNumber}/approve")
