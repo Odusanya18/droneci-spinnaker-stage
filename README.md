@@ -7,7 +7,7 @@ This plugin implements the Stage Definition builder and each stage implements an
 
 The plugin consists of a `droneci-orca`, `droneci-igor`, `droneci-gate` [Kotlin](https://kotlinlang.org/docs/reference/) server components and a `drone-deck` [React](https://reactjs.org/) UI component that uses the [rollup.js](https://rollupjs.org/guide/en/#plugins-overview) plugin library.
 
-This is plugin is still **alpha**.
+This plugin is still **alpha** and contributions are very welcome.
 
 # Version Compatibility
  
@@ -51,10 +51,3 @@ To debug the `droneci`  server component inside a Spinnaker service (like Orca) 
 4) Configure the Spinnaker service the same way specified above.
 5) Create a new IntelliJ run configuration for the service that has the VM option `-Dpf4j.mode=development` and does a `Build Project` before launch.
 6) Debug away...
-
-# Video walkthroughs
-
-* `Plugging into the UI` [video walkthrough](https://youtu.be/u9NVlG58NYo)
-* `Plugging into Spinnaker Services` [video walkthrough](https://drive.google.com/open?id=1JPkXG5NnXowb1OElAFj2VjnpvUDA-Wyi)
-* `Plugin Build and Release` [video walkthrough](https://drive.google.com/file/d/16DIo812nRyan2CDCTuZvsgN4D9yl0Dur/view?usp=sharing)
-* `Plugin Delivery` [video walkthrough](https://drive.google.com/file/d/1k-MUgmwWFdh6YiozmFw5Y2hGSm84UeTw/view?usp=sharing)
