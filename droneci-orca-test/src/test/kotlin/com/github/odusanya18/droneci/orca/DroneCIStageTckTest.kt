@@ -10,12 +10,12 @@ import strikt.assertions.isEqualTo
  * This test demonstrates that the DroneCIPlugin can be loaded by Orca
  * and that DroneCIStage's StageDefinitionBuilder can be retrieved at runtime.
  */
-class DroneCIStageTckTest : PluginsTck<OrcaPluginsFixture>() {
+class DroneCIStageTckTest : PluginsTck<DroneCIPluginsFixture>() {
 
-    fun tests() = rootContext<OrcaPluginsFixture> {
+    fun tests() = rootContext<DroneCIPluginsFixture> {
         context("a running Orca instance") {
             serviceFixture {
-                OrcaPluginsFixture()
+                DroneCIPluginsFixture()
             }
 
             defaultPluginTests()

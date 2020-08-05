@@ -1,17 +1,19 @@
 package com.github.odusanya18.droneci.config
 
 import com.github.odusanya18.droneci.models.Master
-import com.netflix.spinnaker.kork.plugins.api.ExtensionConfiguration
+import com.netflix.spinnaker.kork.plugins.api.PluginConfiguration
 import org.springframework.boot.context.properties.ConfigurationProperties
 import org.springframework.http.HttpStatus
+import org.springframework.stereotype.Component
 import org.springframework.web.bind.annotation.ResponseStatus
 
-@ExtensionConfiguration("odusanya18.drone-ci")
+@PluginConfiguration("odusanya18.drone-ci")
+@Component
 @ConfigurationProperties(
     "spinnaker.extensibility.plugins.odusanya18.drone-ci." +
             "extensions.odusanya18.drone-ci.config"
 )
-open class DroneCIProperties {
+class DroneCIProperties {
     private var masters: List<Master> = emptyList()
     var timeout = 300L
     var backOffPeriod = 500L
