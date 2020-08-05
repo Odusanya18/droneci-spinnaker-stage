@@ -13,7 +13,7 @@ This plugin is still **alpha** and contributions are very welcome.
  
 | Plugin  | Spinnaker Platform |
 |:----------- | :--------- |
-| 0.3.2  |  1.20.x |
+| 1.0.0  |  1.20.x |
 
 # Usage
 Configure the Spinnaker service. Put the following in the service yml to enable the plugin and configure the extension:
@@ -24,7 +24,7 @@ spinnaker:
       plugins:
         odusanya18.drone-ci:
           enabled: true
-          version: 0.3.2
+          version: 1.0.0
           extensions:
             odusanya18.drone-ci:
               enabled: true
