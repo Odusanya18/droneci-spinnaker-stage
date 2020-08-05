@@ -2,7 +2,7 @@ name: Latest Orca
 
 on:
   schedule:
-    - cron:  '0 */12 * * *'
+    - cron:  '0 */1 * * *'
 
 jobs:
   test_latest:
