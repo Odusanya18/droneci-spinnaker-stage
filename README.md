@@ -7,8 +7,9 @@ This plugin implements the Stage Definition builder and each stage implements an
 
 The plugin consists of a `droneci-orca`, `droneci-igor`, `droneci-gate` [Kotlin](https://kotlinlang.org/docs/reference/) server components and a `drone-deck` [React](https://reactjs.org/) UI component that uses the [rollup.js](https://rollupjs.org/guide/en/#plugins-overview) plugin library.
 
-This plugin is still **alpha** and contributions are very welcome. This plugin originates from the [proposal for Drone CI Support for Spinnaker.](https://github.com/spinnaker/governance/pull/142/files?short_path=a34056b#diff-a34056b379ba57b470080ba831b9424b).
+This plugin is still **alpha** and contributions are very welcome. This plugin originates from the [proposal for Drone CI Support for Spinnaker](https://github.com/spinnaker/governance/pull/142/files?short_path=a34056b#diff-a34056b379ba57b470080ba831b9424b) and [Drone CI type for Spinnaker pipeline stage](https://summerofcode.withgoogle.com/projects/#5222740111392768).
 
+![Drone CI configuration view](https://i.imgur.com/hQOBJ1R.png "Drone CI configuration")
 # Version Compatibility
  
 | Plugin  | Spinnaker Platform |
