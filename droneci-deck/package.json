@@ -14,7 +14,9 @@
     "watch": "rollup -c -w --no-watch.clearScreen",
     "postinstall": "check-plugin && check-peer-dependencies || true",
     "develop": "npm run clean && run-p watch proxy",
-    "proxy": "dev-proxy"
+    "proxy": "dev-proxy",
+    "lint": "prettier --check './src/**/*.{tsx,ts}'",
+    "lint:fix": "prettier --write './src/**/*.{tsx,ts}'"
   },
   "repository": "https://github.com/odusanya18/droneci-spinnaker-stage.git",
   "license": "MIT",

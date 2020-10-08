@@ -2,7 +2,7 @@ import React from 'react';
 
 import Select from 'react-select';
 import { Option } from 'react-select';
-import { StageConfigField, IStageConfigProps  } from '@spinnaker/core';
+import { StageConfigField, IStageConfigProps } from '@spinnaker/core';
 import { DroneService } from '../services/droneci.service';
 
 export interface IDroneCIStageConfigState {
@@ -30,7 +30,7 @@ export class DroneCIStageConfig extends React.Component<IStageConfigProps, IDron
 
   public componentDidMount(): void {
     DroneService.listMasters().then((masters: string[]) => {
-      this.setState({ masters})
+      this.setState({ masters });
     });
 
     this.fetchAvailableNamespaces();
@@ -48,7 +48,10 @@ export class DroneCIStageConfig extends React.Component<IStageConfigProps, IDron
             value={master}
             placeholder="Select a build master..."
             onChange={this.onMasterChanged}
-            options={masters.map((name: string) => ({ label: name, value: name }))}
+            options={masters.map((name: string) => ({
+              label: name,
+              value: name,
+            }))}
             clearable={false}
           />
         </StageConfigField>
@@ -59,7 +62,10 @@ export class DroneCIStageConfig extends React.Component<IStageConfigProps, IDron
               value={namespace}
               placeholder="Select a namespace..."
               onChange={this.onNamespaceChanged}
-              options={namespaces.map((name: string) => ({ label: name, value: name }))}
+              options={namespaces.map((name: string) => ({
+                label: name,
+                value: name,
+              }))}
               clearable={false}
             />
           )}
@@ -71,7 +77,10 @@ export class DroneCIStageConfig extends React.Component<IStageConfigProps, IDron
               value={repo}
               placeholder="Select a repository..."
               onChange={this.onRepoChanged}
-              options={repos.map((name: string) => ({ label: name, value: name }))}
+              options={repos.map((name: string) => ({
+                label: name,
+                value: name,
+              }))}
               clearable={false}
             />
           )}
@@ -111,7 +120,7 @@ export class DroneCIStageConfig extends React.Component<IStageConfigProps, IDron
       return;
     }
     this.props.updateStageField({
-      repo: option.value
+      repo: option.value,
     });
     this.props.stageFieldUpdated();
   };
@@ -119,7 +128,9 @@ export class DroneCIStageConfig extends React.Component<IStageConfigProps, IDron
   private fetchAvailableNamespaces = () => {
     const { master } = this.getStage();
     if (master) {
-      DroneService.listNamespacesForMaster(master).then((namespaces: string[]) => this.setState({ namespaces: namespaces }));
+      DroneService.listNamespacesForMaster(master).then((namespaces: string[]) =>
+        this.setState({ namespaces: namespaces }),
+      );
     }
   };
 
